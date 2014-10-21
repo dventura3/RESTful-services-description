@@ -15,17 +15,17 @@
 {
   _:request http:methodName "GET" ;
             http:requestURI "sensor/humidity" ;
-            http:resp [ http:body _:val ].
+            http:resp [ http:body ?currentHumidity ].
 
-  _:CurrentHumidity a ssn:ObservationValue ;
+  ?currentHumidity a ssn:ObservationValue ;
             dul:isClassifiedBy  unit:Percent;
             dul:hasDataValue _:val .
 
-  _:ResultedHumidity a ssn:SensorOutput ;
-            ssn:hasValue _:CurrentHumidity .
+  ?resultedHumidity a ssn:SensorOutput ;
+            ssn:hasValue ?currentHumidity .
   
   ?observation a  ssn:Observation ;
             ssn:observedBy      :MySensorHumidity;
             ssn:observedProperty med:Humidity;
-            ssn:observationResult _:ResultedHumidity .
+            ssn:observationResult ?resultedHumidity .
 }.

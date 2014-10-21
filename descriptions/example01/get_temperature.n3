@@ -15,17 +15,17 @@
 {
   _:request http:methodName "GET" ;
             http:requestURI "sensor/temperature" ;
-            http:resp [ http:body _:val ].
+            http:resp [ http:body ?currentTemperature ].
 
-  _:CurrentTemperature a ssn:ObservationValue ;
+  ?currentTemperature a ssn:ObservationValue ;
             dul:isClassifiedBy  unit:DegreeCelsius;
             dul:hasDataValue _:val .
 
-  _:ResultedTemperature a ssn:SensorOutput ;
-            ssn:hasValue _:CurrentTemperature .
+  ?resultedTemperature a ssn:SensorOutput ;
+            ssn:hasValue ?currentTemperature .
   
   ?observation a  ssn:Observation ;
             ssn:observedBy      :MySensorTemperature;
             ssn:observedProperty thermo:Temperature;
-            ssn:observationResult _:ResultedTemperature .
+            ssn:observationResult ?resultedTemperature .
 }.
