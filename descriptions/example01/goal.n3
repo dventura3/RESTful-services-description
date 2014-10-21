@@ -1,0 +1,26 @@
+@prefix dul:  <http://www.loa.istc.cnr.it/ontologies/DUL.owl#>.
+@prefix ssn:  <http://purl.oclc.org/NET/ssnx/ssn#>.
+@prefix : <http://example.org/sensor/>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix thermo: <http://sweet.jpl.nasa.gov/2.2/quanTemperature.owl#>.
+
+{
+
+  ?sensor       a ssn:SensingDevice;
+                ssn:madeObservation ?obervation.
+
+  ?obervation   a  ssn:Observation ;
+                ssn:observedProperty thermo:Temperature;
+                ssn:observationResult ?result .
+
+  ?result       a ssn:SensorOutput ;
+                ssn:hasValue ?outputvalue .
+
+  ?outputvalue  a ssn:ObservationValue ;
+                dul:isClassifiedBy  unit:DegreeCelsius;
+                dul:hasDataValue  ?val .
+}
+=>
+{
+  ?sensor       a ssn:SensingDevice.
+}.
