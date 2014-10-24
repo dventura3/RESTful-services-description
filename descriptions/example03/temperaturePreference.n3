@@ -1,0 +1,13 @@
+@prefix : <http://example.org/>.
+@prefix ssn: <http://www.w3.org/2005/Incubator/ssn/ssnx/ssn#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix frap: <http://purl.org/frap/>.
+@prefix thermo: <http://sweet.jpl.nasa.gov/2.2/quanTemperature.owl#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix dul:  <http://www.loa.istc.cnr.it/ontologies/DUL.owl#>.
+
+
+:ActuatorPreference				a frap:Preference ;
+								a ssn:ObservationValue ;
+								dul:isClassifiedBy  unit:DegreeCelsius;
+      							dul:hasDataValue 30 .

@@ -1,0 +1,17 @@
+@prefix : <http://example.org/>.
+@prefix ssn: <http://www.w3.org/2005/Incubator/ssn/ssnx/ssn#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix frap: <http://purl.org/frap/>.
+@prefix thermo: <http://sweet.jpl.nasa.gov/2.2/quanTemperature.owl#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix dul:  <http://www.loa.istc.cnr.it/ontologies/DUL.owl#>.
+
+
+# These are information about the actuator => è in grado di attuare una preferenza (?) - eseguire un comando - assumere uno stato
+:MyActuatorForAirConditioner	a dbpedia:Actuator ;
+								ssn:featureOfInterest thermo:Temperature.
+
+
+# Air Conditioner is the platform. It contains an actuator to set the working temperature.
+:MyAirConditioner	a dbpedia:Air_Conditioner ;
+      				:attachedSystem :MyActuatorForAirConditioner .

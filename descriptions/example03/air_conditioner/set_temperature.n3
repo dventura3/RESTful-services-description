@@ -1,0 +1,28 @@
+@prefix dul:  <http://www.loa.istc.cnr.it/ontologies/DUL.owl#>.
+@prefix ssn:  <http://purl.oclc.org/NET/ssnx/ssn#>.
+@prefix : <http://example.org/>.
+@prefix http: <http://www.w3.org/2011/http#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix thermo: <http://sweet.jpl.nasa.gov/2.2/quanTemperature.owl#>.
+@prefix frap: <http://purl.org/frap/>.
+
+
+# airconditioner/actuator/temperature => nel body c'è il valore di temperatura as preference
+
+{
+  ?preference         a frap:Preference.
+}
+=>
+{
+  _:request http:methodName "POST";
+            http:requestURI  "airconditioner/actuator/temperature" ;
+            http:body ?preference ;
+            http:resp [ http:body ?preference ].
+  
+  :MyActuatorForAirConditioner :hasPreference ?preference.
+
+  ?preference         a frap:Preference ;
+                      a ssn:ObservationValue ;
+                      dul:isClassifiedBy  unit:DegreeCelsius;
+                      dul:hasDataValue ?desiredvalue .
+}.
