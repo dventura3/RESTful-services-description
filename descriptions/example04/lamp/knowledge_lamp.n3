@@ -1,0 +1,11 @@
+@prefix : <http://example.org/>.
+@prefix ssn: <http://www.w3.org/2005/Incubator/ssn/ssnx/ssn#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix frap: <http://purl.org/frap/>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix sweet: <http://sweet.jpl.nasa.gov/>.
+
+
+:MyRGBLed	a dbpedia:Actuator ;
+			a dbpedia:Light-emitting_diode ;
+			ssn:featureOfInterest sweet:Light.

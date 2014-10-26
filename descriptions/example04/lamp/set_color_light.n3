@@ -1,0 +1,37 @@
+@prefix dul:  <http://www.loa.istc.cnr.it/ontologies/DUL.owl#>.
+@prefix ssn:  <http://purl.oclc.org/NET/ssnx/ssn#>.
+@prefix : <http://example.org/>.
+@prefix http: <http://www.w3.org/2011/http#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix frap: <http://purl.org/frap/>.
+@prefix ucum: <http://purl.oclc.org/NET/muo/ucum/>.
+@prefix sweet: <http://sweet.jpl.nasa.gov/>.
+
+
+# ledRGB/light/color => in the body there is the color value expressed as preference.
+
+{
+
+    ?preference     a frap:Preference ;
+                  	frap:about ?pattern;
+                  	:hasDataValue ?value.
+
+  	?pattern        a frap:Pattern ;
+                  	frap:filter ?filterA ;
+                  	frap:filter ?filterB .
+
+  	?filterA        a frap:Filter ;
+                  	:isClassifiedBy  ucum:lux .
+
+  	?filterB        a frap:Filter ;
+                  	:featureOfInterest sweet:Light ;                	                  
+}
+=>
+{
+  	_:request 	http:methodName "POST";
+            	http:requestURI  "ledRGB/light/color" ;
+            	http:body ?preference ;
+            	http:resp [ http:body ?preference ].
+  
+  	:MyRGBLed           :hasPreference ?preference.
+}.

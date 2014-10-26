@@ -1,0 +1,33 @@
+@prefix : <http://example.org/>.
+@prefix ssn: <http://www.w3.org/2005/Incubator/ssn/ssnx/ssn#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix frap: <http://purl.org/frap/>.
+@prefix thermo: <http://sweet.jpl.nasa.gov/2.2/quanTemperature.owl#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix dul:  <http://www.loa.istc.cnr.it/ontologies/DUL.owl#>.
+
+#This Doesn't work. Probably the cause is 'a ssn:ObservationValue' => there is something with the sensor temperature that contrasts the preference!
+#:ActuatorPreference				a ssn:ObservationValue ;
+#								a frap:Preference ;
+#								dul:isClassifiedBy  unit:DegreeCelsius;
+#      							dul:hasDataValue 30 .
+
+
+:ActuatorPreference				a frap:Preference ;
+								frap:about :ActuatorPattern ;
+								:hasDataValue 30.
+
+:ActuatorPattern				a frap:Pattern ;
+								frap:filter :FilterA ;
+								frap:filter :FilterB .
+
+:FilterA						a frap:Filter ;
+								:isClassifiedBy  unit:DegreeCelsius.
+
+:FilterB						a frap:Filter ;
+								:featureOfInterest thermo:Temperature.
+
+
+#filtri => ssn:featureOfInterest	dbpedia:Temperature;
+#filtri => dul:isClassifiedBy  		unit:DegreeCelsius;
+#filtri (?) => dul:hasDataValue 		30 .
