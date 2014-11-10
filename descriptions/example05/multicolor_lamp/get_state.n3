@@ -1,0 +1,21 @@
+@prefix : <http://example.org/myontology#>.
+@prefix http: <http://www.w3.org/2006/http#>.
+@prefix tmpl: <http://purl.org/restdesc/http-template#>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+
+{
+	:MyRGBLed           dogont:hasState         	?onOffState.
+
+	?onOffState         a                           dogont:DiscreteState;
+                        dogont:hasStateValue        ?onOffStateValue.
+
+	?onOffStateValue    a                           dogont:DiscreteValue;
+                        dogont:unitOfMeasure        :Bool;
+                        dogont:realStateValue       ?stateValue.
+}
+=>
+{
+	_:request 		http:methodName 	"GET" ;
+            		http:absoluteURI 	"multicolorlamp" ;
+            		http:resp 			[ tmpl:represents ?onOffState ].
+}.

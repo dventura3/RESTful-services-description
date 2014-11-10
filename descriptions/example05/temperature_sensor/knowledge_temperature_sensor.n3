@@ -1,0 +1,13 @@
+@prefix ssn: <http://purl.oclc.org/NET/ssnx/ssn#>.
+@prefix dul: <http://www.loa.istc.cnr.it/ontologies/DUL.owl#>.
+@prefix : <http://example.org/myontology#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix thermo: <http://sweet.jpl.nasa.gov/2.2/quanTemperature.owl#>.
+
+:MySensorTemperature	a 						ssn:SensingDevice;				#subClassOf ssn:Sensor
+			  			ssn:madeObservation 	:TemperatureObservation;
+			  			ssn:featureOfInterest	thermo:Temperature.
+
+:TemperatureObservation a 						ssn:Observation;
+						ssn:observedBy      	:MySensorTemperature;
+						ssn:observedProperty 	thermo:Temperature.

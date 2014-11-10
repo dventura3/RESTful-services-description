@@ -1,0 +1,32 @@
+@prefix dul:  <http://www.loa.istc.cnr.it/ontologies/DUL.owl#>.
+@prefix ssn:  <http://purl.oclc.org/NET/ssnx/ssn#>.
+@prefix : <http://example.org/myontology#>.
+@prefix http: <http://www.w3.org/2011/http#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix thermo: <http://sweet.jpl.nasa.gov/2.2/quanTemperature.owl#>.
+@prefix frap: <http://purl.org/frap/>.
+
+
+#goal 2 : determinare qual è l'oggetto che è in grado di fare questo: "Set temperature to 30°Celsius"  (se dico "temperatura del condizionatore" => vado a cercare lo stato di un oggetto. se dico "temperatura della cucina" o "temperatura (e basta, come in questo caso)" => vado a cercare una osservazione).
+
+{
+	?obj	ssn:madeObservation			?observ.
+	
+	?observ   	a                       ssn:Observation;
+            	ssn:observedBy          ?obj;
+            	ssn:observedProperty    thermo:Temperature;
+            	ssn:observationResult   ?resultedTemperature;
+            	:holds                  ?preference;
+            	:valueToReach           ?temperature.                           #oppure solo :toReach   ?preference
+
+  	?resultedTemperature   	a                   ssn:SensorOutput;
+                          	ssn:hasValue        ?currentTemperature.
+
+  	?currentTemperature    	a                   ssn:ObservationValue;
+                          	dul:isClassifiedBy  unit:DegreeCelsius;
+                          	dul:hasDataValue    _:val.
+}
+=>
+{
+	?obj	ssn:madeObservation			?observ.
+}.

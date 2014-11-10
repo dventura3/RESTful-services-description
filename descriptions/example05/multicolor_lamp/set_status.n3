@@ -1,0 +1,51 @@
+@prefix : <http://example.org/myontology#>.
+@prefix http: <http://www.w3.org/2006/http#>.
+@prefix tmpl: <http://purl.org/restdesc/http-template#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+@prefix frap: <http://purl.org/frap/>.
+
+
+#Supposing the status is changed, the conseguence is to have a new state about brightness and rgbColor.
+
+
+{
+	?preference		a					frap:Preference;
+					:hasAttribute		?attribute.
+
+	?attribute		a					:Attribute;
+					:isAbout            dogont:OnOffState;
+                    :unitOfMeasurement  :Bool;                                  #or maybe is better to use BinarySatate
+                    :hasQualityValue    ?value.
+}
+=>
+{
+	_:request 		http:methodName 	"PUT" ;
+            		http:absoluteURI 	"multicolorlamp" ;
+            		http:body 			[ tmpl:formData ("state :" ?value) ];          #could it be a json object?
+            		http:resp 			[ tmpl:represents _:OnOffState ].
+
+    :MyRGBLed               dogont:hasState             _:OnOffState;
+                            dogont:hasState             _:ColorState;
+                            dogont:hasState             _:LightIntensityState.
+
+    _:LightIntensityState   a                           dogont:ContinuousState;         #subClass of dogont:State
+                            dogont:hasStateValue        _:LightStateValue.
+    _:LightStateValue       a                           dogont:ContinuousValue;
+                            dogont:unitOfMeasure        unit:Lumen;
+                            dogont:realStateValue       _:Brightness.
+
+    _:ColorState            a                           dogont:State;
+                            dogont:hasStateValue        _:ColorStateValue.
+    _:ColorStateValue       a                           dogont:StateValue;
+                            dogont:unitOfMeasure        dbpedia:RGB_color_model;
+                            dogont:realStateValue       _:Color.
+
+    _:OnOffState            a                           dogont:DiscreteState;
+                            dogont:hasStateValue        _:OnOffStateValue;
+                            :hasBeenChangedBy           ?preference.
+    _:OnOffStateValue       a                           dogont:DiscreteValue;
+                            dogont:unitOfMeasure        :Bool;
+                            dogont:realStateValue       ?value.
+}.

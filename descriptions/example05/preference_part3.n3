@@ -1,0 +1,16 @@
+@prefix : <http://example.org/myontology#>.
+@prefix http: <http://www.w3.org/2006/http#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix dbpedia-owl: <http://dbpedia.org/ontology/>. 
+@prefix frap: <http://purl.org/frap/>.
+
+
+#preference expressed by user: "Set light color = blue"
+
+_:preference        a                   	frap:Preference;
+                    :hasAttribute       	_:attribute.
+
+_:attribute         a                   	:Attribute;
+                    :isAbout            	dbpedia-owl:Colour;
+                    :unitOfMeasurement  	dbpedia:RGB_color_model;
+                    :hasQualityValue    	"BLUE".

@@ -1,0 +1,38 @@
+@prefix : <http://example.org/myontology#>.
+@prefix ssn: <http://www.w3.org/2005/Incubator/ssn/ssnx/ssn#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix sweet: <http://sweet.jpl.nasa.gov/>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+
+
+:MyRGBLed		a 						dbpedia:Actuator ;
+				a 						dbpedia:Light-emitting_diode ;
+				ssn:featureOfInterest 	sweet:Light.
+
+
+###################### DEFAULT OnOff Value ##########################
+
+#e se invece di creare _:xxx (che è un nodo bianco) istanzio proprio un nodo fisso?
+
+
+:MyRGBLed               dogont:hasState         	_:OnOffState.
+
+_:OnOffState            a                           dogont:DiscreteState;
+                        dogont:hasStateValue        _:OnOffStateValue.
+
+_:OnOffStateValue       a                           dogont:DiscreteValue;
+                        dogont:unitOfMeasure        :Bool;
+                        dogont:realStateValue       "false".
+
+
+###################### DEFAULT Brightness Value ##########################
+#
+#:MyRGBLed               dogont:hasState         	_:LightIntensityState.
+#
+#_:LightIntensityState   a                       	dogont:ContinuousState;
+#                        dogont:hasStateValue    	_:LightStateValue.
+#
+#_:LightStateValue       a                       	dogont:ContinuousValue;
+#                        dogont:unitOfMeasure  		unit:Lumen;
+#                        dogont:realStateValue   	"100".

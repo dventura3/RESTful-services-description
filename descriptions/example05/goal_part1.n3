@@ -1,0 +1,26 @@
+@prefix ssn: <http://purl.oclc.org/NET/ssnx/ssn#>.
+@prefix dul: <http://www.loa.istc.cnr.it/ontologies/DUL.owl#>.
+@prefix : <http://example.org/myontology#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix thermo: <http://sweet.jpl.nasa.gov/2.2/quanTemperature.owl#>.
+
+#il goal deve resituire l'oggetto che è in grado di osservare la temperatura e darmene il valore in Celsius degrees.
+
+{
+	?obj				ssn:madeObservation				?obsTemperature.
+
+	?obsTemperature		a                   			ssn:Observation;
+						ssn:observedProperty 			thermo:Temperature;
+						ssn:observationResult			?obsResulted.
+
+  	?obsResulted   		a                   			ssn:SensorOutput;
+                        ssn:hasValue        			?currentTemperature.
+
+	?currentTemperature a                   			ssn:ObservationValue;
+                        dul:isClassifiedBy  			unit:DegreeCelsius;
+						dul:hasDataValue    			?value.
+}
+=>
+{
+	?obj				ssn:madeObservation				?obsTemperature.
+}.

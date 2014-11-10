@@ -1,0 +1,38 @@
+@prefix : <http://example.org/myontology#>.
+@prefix http: <http://www.w3.org/2006/http#>.
+@prefix tmpl: <http://purl.org/restdesc/http-template#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix flux: <http://sweet.jpl.nasa.gov/2.2/propEnergyFlux.owl#>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+@prefix frap: <http://purl.org/frap/>.
+
+
+ #Se viene espressa una preference del tipo sotto, allora è possibile effettuare una PUT che restituità l'attuale stato settato.
+
+
+{
+	?preference         a                   frap:Preference;
+                        :hasAttribute       ?attribute.
+
+    ?attribute          a                   :Attribute;
+                        :isAbout            flux:Brightness;
+                        :unitOfMeasurement  unit:Lumen;
+                        :hasQualityValue    ?brightness.
+}
+=>
+{
+	_:request 		http:methodName 	"PUT" ;
+            		http:absoluteURI 	"multicolorlamp/brightness" ;
+            		http:body 			[ tmpl:formData ("brightness :" ?brightness) ];    #json? or simple body?
+            		http:resp 			[ tmpl:represents _:LightIntensityState ].
+
+    :MyRGBLed               dogont:hasState             _:LightIntensityState.
+
+    _:LightIntensityState   a                           dogont:ContinuousState;         #subClass of dogont:State
+                            dogont:hasStateValue        _:LightStateValue;
+                            :hasBeenChangedBy           ?preference.
+
+    _:LightStateValue       a                           dogont:ContinuousValue;
+                            dogont:unitOfMeasure        unit:Lumen;
+                            dogont:realStateValue       ?brightness.
+}.

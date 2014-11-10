@@ -1,0 +1,43 @@
+@prefix dul:  <http://www.loa.istc.cnr.it/ontologies/DUL.owl#>.
+@prefix ssn:  <http://purl.oclc.org/NET/ssnx/ssn#>.
+@prefix : <http://example.org/myontology#>.
+@prefix http: <http://www.w3.org/2011/http#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix thermo: <http://sweet.jpl.nasa.gov/2.2/quanTemperature.owl#>.
+@prefix frap: <http://purl.org/frap/>.
+
+
+# airconditioner/actuator/temperature => nel body c'è il valore di temperatura as preference
+
+{
+  ?preference     a                   frap:Preference;
+                  :hasAttribute       ?attribute.
+
+  ?attribute      a                   :Attribute;
+                  :isAbout            thermo:Temperature;
+                  :unitOfMeasurement  unit:DegreeCelsius;
+                  :hasQualityValue    ?value.
+}
+=>
+{
+  _:request http:methodName "PUT";
+            http:requestURI  "airconditioner/temperature" ;
+            http:body ?preference;
+            http:resp [ http:body ?preference ].
+
+  :MyActuatorForAirConditioner ssn:madeObservation  _:ob1. 
+
+  _:ob1     a                       ssn:Observation;
+            ssn:observedBy          :MyActuatorForAirConditioner;
+            ssn:observedProperty    thermo:Temperature;
+            ssn:observationResult   _:ResultedTemperature;
+            :holds                  ?preference;
+            :valueToReach           ?temperature.                           #oppure solo :toReach   ?preference
+
+  _:ResultedTemperature   a                   ssn:SensorOutput;
+                          ssn:hasValue        _:CurrentTemperature.
+
+  _:CurrentTemperature    a                   ssn:ObservationValue;
+                          dul:isClassifiedBy  unit:DegreeCelsius;
+                          dul:hasDataValue    _:val.
+}.

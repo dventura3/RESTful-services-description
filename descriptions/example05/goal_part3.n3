@@ -1,0 +1,28 @@
+@prefix : <http://example.org/myontology#>.
+@prefix http: <http://www.w3.org/2006/http#>.
+@prefix tmpl: <http://purl.org/restdesc/http-template#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix flux: <http://sweet.jpl.nasa.gov/2.2/propEnergyFlux.owl#>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix frap: <http://purl.org/frap/>.
+
+#Voglio che il goal sia => restituiscimi l'ogetto che è in grado di cambiare il colore della luce che emana in base ad una preference settata dall'utente.
+
+{
+	?obj               		dogont:hasState             ?colorState.
+
+	?preference         	a                   		frap:Preference.
+
+    ?colorState         	a                           dogont:State;
+                            dogont:hasStateValue        ?colorStateValue;
+                            :hasBeenChangedBy           ?preference.  
+
+    ?colorStateValue      	a                           dogont:StateValue;
+                            dogont:unitOfMeasure        dbpedia:RGB_color_model;
+                            dogont:realStateValue       ?color.
+}
+=>
+{
+	?obj               		dogont:hasState             ?colorState.
+}.

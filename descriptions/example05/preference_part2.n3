@@ -1,0 +1,16 @@
+@prefix dul:  <http://www.loa.istc.cnr.it/ontologies/DUL.owl#>.
+@prefix ssn:  <http://purl.oclc.org/NET/ssnx/ssn#>.
+@prefix : <http://example.org/myontology#>.
+@prefix http: <http://www.w3.org/2011/http#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix thermo: <http://sweet.jpl.nasa.gov/2.2/quanTemperature.owl#>.
+@prefix frap: <http://purl.org/frap/>.
+
+
+_:p1    a                   frap:Preference;
+        :hasAttribute       _:a1.
+
+_:a1    a                   :Attribute;
+        :isAbout            thermo:Temperature;
+        :unitOfMeasurement  unit:DegreeCelsius;
+        :hasQualityValue    "30".

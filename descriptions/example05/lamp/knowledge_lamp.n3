@@ -1,0 +1,25 @@
+@prefix : <http://example.org/myontology#>.
+@prefix ssn: <http://www.w3.org/2005/Incubator/ssn/ssnx/ssn#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix sweet: <http://sweet.jpl.nasa.gov/>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+
+
+:MyLamp			a 						dbpedia:Actuator ;
+				a 						dbpedia:Lamp ;
+				ssn:featureOfInterest 	sweet:Light.
+
+# Due possibili modalità di esprimere lo stato:
+# 1) Stato composto da tanti sotto-stati (Attribute) diversi in base alla feature di interesse
+# 2) Tanti diversi "State" ognuno riguardante una feature di interesse
+
+###################### DEFAULT OnOffState ##########################
+
+:MyLamp					dogont:hasState         	_:OnOffState.
+
+_:OnOffState            a                           dogont:DiscreteState;
+                        dogont:hasStateValue        _:OnOffStateValue.
+
+_:OnOffStateValue       a                           dogont:DiscreteValue;
+                        dogont:unitOfMeasure        :Bool;
+                        dogont:realStateValue       "false".

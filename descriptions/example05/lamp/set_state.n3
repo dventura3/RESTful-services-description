@@ -1,0 +1,34 @@
+@prefix : <http://example.org/myontology#>.
+@prefix http: <http://www.w3.org/2006/http#>.
+@prefix tmpl: <http://purl.org/restdesc/http-template#>.
+@prefix state: <http://sweet.jpl.nasa.gov/2.2/state.owl#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+@prefix frap: <http://purl.org/frap/>.
+
+
+{
+	?preference     a                   frap:Preference;
+                    :hasAttribute       ?attribute.
+
+    ?attribute      a                   :Attribute;
+                    :isAbout            dogont:OnOffState;
+                    :unitOfMeasurement  :Bool;                                  #or maybe is better to use BinarySatate
+                    :hasQualityValue    ?value.
+}
+=>
+{
+	_:request 		http:methodName 	"PUT" ;
+            		http:absoluteURI 	"lamp";
+            		http:body 			?value;                                  #could it be  a json object?
+            		http:resp 			[ tmpl:represents _:OnOffState ].
+
+    :MyLamp                 dogont:hasState             _:OnOffState.
+
+    _:OnOffState            a                           dogont:DiscreteState;
+                            dogont:hasStateValue        _:OnOffStateValue;
+                            :hasBeenChangedBy           ?preference.
+    _:OnOffStateValue       a                           dogont:DiscreteValue;
+                            dogont:unitOfMeasure        :Bool;
+                            dogont:realStateValue       ?value.
+}.

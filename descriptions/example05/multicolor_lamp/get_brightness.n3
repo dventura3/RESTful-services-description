@@ -1,0 +1,28 @@
+@prefix : <http://example.org/myontology#>.
+@prefix http: <http://www.w3.org/2006/http#>.
+@prefix tmpl: <http://purl.org/restdesc/http-template#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix flux: <http://sweet.jpl.nasa.gov/2.2/propEnergyFlux.owl#>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+
+{
+	:MyRGBLed               dogont:hasState             ?intensityState.
+
+    ?intensityState         a                           dogont:ContinuousState;
+                            dogont:hasStateValue        ?intensityStateValue.
+
+    ?intensityStateValue    a                           dogont:ContinuousValue;
+                            dogont:unitOfMeasure        unit:Lumen;
+                            dogont:realStateValue       ?brightness.
+
+    #mettere qui le preference, potrebbe non essere giusto pensando al condizionatore che ha sia stato attuale che preference!
+}
+=>
+{
+	_:request 		http:methodName 	"GET" ;
+            		http:absoluteURI 	"multicolorlamp/brightness" ;
+            		http:resp 			[ tmpl:represents ?intensityState ].
+
+    #si ottiene anche una osservazione? - penso di si!
+                
+}.
