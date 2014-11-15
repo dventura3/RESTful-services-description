@@ -1,0 +1,14 @@
+@prefix : <http://example.org/myontology#>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+@prefix frap: <http://purl.org/frap/>.
+@prefix flux: <http://sweet.jpl.nasa.gov/2.2/propEnergyFlux.owl#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+
+
+
+?preference     a           frap:Preference;
+                frap:about  [   a                   frap:Pattern;
+                                a                   flux:Brightness;
+                                :unitOfMeasurement  unit:Lumen;
+                                :hasValue           "20"
+                            ].

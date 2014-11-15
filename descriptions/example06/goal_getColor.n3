@@ -1,0 +1,36 @@
+@prefix : <http://example.org/myontology#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix flux: <http://sweet.jpl.nasa.gov/2.2/propEnergyFlux.owl#>.
+@prefix frap: <http://purl.org/frap/>.
+@prefix bonsai: <http://lpis.csd.auth.gr/ontologies/bonsai/BOnSAI.owl#>.
+@prefix foi: <http://www.foi.org/featuresForSmartThings#>.
+@prefix sweet: <http://sweet.jpl.nasa.gov/>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+
+
+
+{
+	:MyRGBLed 			dogont:hasState  			?colorState.
+
+	?colorState             a                           dogont:ColorStateRGB;
+							dogont:hasStateValue        ?blueValue;
+							dogont:hasStateValue        ?greenValue;
+							dogont:hasStateValue        ?redValue.
+
+	?blueValue              a                           dogont:BlueStateValue;
+							dogont:unitOfMeasure        dbpedia:RGB_color_model;
+							dogont:realStateValue       ?blueColor.
+	?greenValue             a                           dogont:GreenStateValue;
+							dogont:unitOfMeasure        dbpedia:RGB_color_model;
+							dogont:realStateValue       ?greenColor.
+	?redValue               a                           dogont:RedStateValue;
+							dogont:unitOfMeasure        dbpedia:RGB_color_model;
+							dogont:realStateValue       ?redColor.
+}
+=>
+{
+	?blueValue 				dogont:realStateValue       ?blueColor.
+	?greenValue 			dogont:realStateValue       ?greenColor.
+	?redValue 				dogont:realStateValue       ?redColor.
+}.

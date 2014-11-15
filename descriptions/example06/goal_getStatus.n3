@@ -1,0 +1,23 @@
+@prefix : <http://example.org/myontology#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix flux: <http://sweet.jpl.nasa.gov/2.2/propEnergyFlux.owl#>.
+@prefix frap: <http://purl.org/frap/>.
+@prefix bonsai: <http://lpis.csd.auth.gr/ontologies/bonsai/BOnSAI.owl#>.
+@prefix foi: <http://www.foi.org/featuresForSmartThings#>.
+@prefix sweet: <http://sweet.jpl.nasa.gov/>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+
+#GOAL: get the state of :MyRGBLed (I'd like to know if it is on or off)
+
+{
+	:MyRGBLed 			dogont:hasState  			?lightState.
+
+	?lightState 		dogont:hasStateValue        ?onOffStateValue.
+
+    ?onOffStateValue 		dogont:unitOfMeasure        :Bool;
+                            dogont:realStateValue       ?value.
+}
+=>
+{
+	?onOffStateValue 		dogont:realStateValue       ?value.
+}.

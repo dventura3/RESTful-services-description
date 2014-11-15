@@ -1,0 +1,31 @@
+@prefix : <http://example.org/myontology#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix flux: <http://sweet.jpl.nasa.gov/2.2/propEnergyFlux.owl#>.
+@prefix frap: <http://purl.org/frap/>.
+@prefix bonsai: <http://lpis.csd.auth.gr/ontologies/bonsai/BOnSAI.owl#>.
+@prefix foi: <http://www.foi.org/featuresForSmartThings#>.
+@prefix sweet: <http://sweet.jpl.nasa.gov/>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+
+
+#oggetto su cui posso settare lo stato a on (ha quindi una preference sullo stato!) e che "tratta" con la luce
+
+{
+	?obj			dogont:hasState  			?onOffState;
+					foi:featureOfInterest		?light.
+
+	?light 			a 							foi:FeatureOfInterest;
+					a 							sweet:Light.
+
+	?preference     a               			frap:Preference.
+
+	?onOffState 	dogont:hasStateValue        ?onOffStateValue.
+
+    ?onOffStateValue 		dogont:unitOfMeasure        :Bool;
+                            dogont:realStateValue       ?value;
+                            :hasBeenChangedBy           ?preference.
+}
+=>
+{
+	?obj 			dogont:hasState  			?onOffState;
+}.
