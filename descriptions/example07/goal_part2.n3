@@ -1,0 +1,27 @@
+@prefix : <http://example.org/myontology#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix thermo: <http://sweet.jpl.nasa.gov/2.2/quanTemperature.owl#>.
+@prefix frap: <http://purl.org/frap/>.
+@prefix foi: <http://www.foi.org/featuresForSmartThings#>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+
+
+{
+	?obj			dogont:hasState  			?tempState;
+					foi:featureOfInterest		?temp.
+
+	?temp 			a 							foi:FeatureOfInterest;
+					a 							thermo:Temperature.
+
+    ?preference 	a 							frap:Preference.
+
+    ?tempState             	a                       dogont:TemperatureState;
+                            dogont:hasStateValue    ?tempStateValue.
+
+    ?tempStateValue        	a                       dogont:TemperatureStateValue;
+                            :hasBeenChangedBy       ?preference.
+}
+=>
+{
+	?obj			dogont:hasState  			?tempState;
+}.

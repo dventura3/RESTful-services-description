@@ -1,0 +1,36 @@
+@prefix : <http://example.org/myontology#>.
+@prefix http: <http://www.w3.org/2011/http#>.
+@prefix tmpl: <http://purl.org/restdesc/http-template#>.
+@prefix state: <http://sweet.jpl.nasa.gov/2.2/state.owl#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+@prefix frap: <http://purl.org/frap/>.
+@prefix headers: <www.w3.org/2011/http-headers#>.
+@prefix bonsai: <http://lpis.csd.auth.gr/ontologies/bonsai/BOnSAI.owl#>.
+
+
+{
+	?preference    a           frap:Preference;
+                    frap:about  [   a                   frap:Pattern;
+                                    a                   bonsai:SwitchAction;
+                                    :unitOfMeasurement  :Bool;
+                                    :hasValue           ?value
+                                ].
+}
+=>
+{
+	_:request 		http:methodName 	"PUT";
+                    headers:accept      "application/json";
+            		http:absoluteURI 	"lamp";
+            		http:body 			[ tmpl:formData ("state :" ?value) ];
+            		http:resp 			[ tmpl:represents _:onOffState ].
+
+    :MyLamp                 dogont:hasState             _:OnOffState.
+
+    _:onOffState            a                           dogont:OnOffState;
+                            dogont:hasStateValue        _:onOffStateValue.
+    _:onOffStateValue       a                           dogont:DiscreteValue;
+                            dogont:unitOfMeasure        :Bool;
+                            dogont:realStateValue       ?value;
+                            :hasBeenChangedBy           ?preference.
+}.

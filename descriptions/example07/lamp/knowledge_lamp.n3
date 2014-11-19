@@ -1,0 +1,20 @@
+@prefix : <http://example.org/myontology#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix sweet: <http://sweet.jpl.nasa.gov/>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+@prefix foi: <http://www.foi.org/featuresForSmartThings#>.
+
+
+:MyLamp			a 							dbpedia:Actuator;
+				a 							dbpedia:Lamp;
+				foi:featureOfInterest 		_:light.
+
+_:light 		a 							foi:FeatureOfInterest;
+				a 							sweet:Light.
+
+
+
+
+###################### DEFAULT OnOffState ##########################
+
+:MyLamp					dogont:hasState         	[a    dogont:OnOffState].

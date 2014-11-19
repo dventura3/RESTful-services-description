@@ -1,0 +1,27 @@
+@prefix : <http://example.org/myontology#>.
+@prefix http: <http://www.w3.org/2011/http#>.
+@prefix tmpl: <http://purl.org/restdesc/http-template#>.
+@prefix state: <http://sweet.jpl.nasa.gov/2.2/state.owl#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix headers: <www.w3.org/2011/http-headers#>.
+
+
+{
+	:MyLamp			    dogont:hasState         	?onOffState.
+	?onOffState 		a                           dogont:OnOffState.
+}
+=>
+{
+	_:request 		http:methodName 	"GET" ;
+					headers:accept      "application/json";
+					http:absoluteURI 	"lamp" ;
+					http:resp 			[ tmpl:represents ?onOffState ].
+
+	?onOffState         dogont:hasStateValue        ?onOffStateValue.
+
+	?onOffStateValue    a                           dogont:DiscreteValue;
+						dogont:unitOfMeasure        :Bool;
+						dogont:realStateValue       ?value.
+}.

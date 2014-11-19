@@ -1,0 +1,12 @@
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix thermo: <http://sweet.jpl.nasa.gov/2.2/quanTemperature.owl#>.
+@prefix frap: <http://purl.org/frap/>.
+@prefix : <http://example.org/myontology#>.
+
+
+?preference       a         frap:Preference;
+                    		frap:about  [   a           		frap:Pattern;
+                                    		a                   thermo:Temperature;
+                                    		:unitOfMeasurement  unit:DegreeCelsius;
+                                    		:hasValue           "20"
+                                ].

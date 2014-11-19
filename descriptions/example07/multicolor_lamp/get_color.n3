@@ -1,0 +1,34 @@
+@prefix : <http://example.org/myontology#>.
+@prefix http: <http://www.w3.org/2011/http#>.
+@prefix tmpl: <http://purl.org/restdesc/http-template#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix dbpedia-owl: <http://dbpedia.org/ontology/>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+@prefix headers: <www.w3.org/2011/http-headers#>.
+
+
+{
+	:MyRGBLed               dogont:hasState             ?colorState.
+	?colorState             a                           dogont:ColorStateRGB.              
+}
+=>
+{
+	_:request 		http:methodName 	"GET" ;
+					headers:accept      "application/json";
+					http:absoluteURI 	"multicolorlamp/color" ;
+					http:resp 			[ tmpl:represents ?colorState ].
+
+	?colorState            	dogont:hasStateValue        ?blueValue;
+							dogont:hasStateValue        ?greenValue;
+							dogont:hasStateValue        ?redValue.
+	?blueValue              a                           dogont:BlueStateValue;
+							dogont:unitOfMeasure        dbpedia:RGB_color_model;
+							dogont:realStateValue       ?blueColor.
+	?greenValue             a                           dogont:GreenStateValue;
+							dogont:unitOfMeasure        dbpedia:RGB_color_model;
+							dogont:realStateValue       ?greenColor.
+	?redValue               a                           dogont:RedStateValue;
+							dogont:unitOfMeasure        dbpedia:RGB_color_model;
+							dogont:realStateValue       ?redColor.
+}.

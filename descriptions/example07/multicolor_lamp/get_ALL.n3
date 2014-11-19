@@ -1,0 +1,55 @@
+@prefix : <http://example.org/myontology#>.
+@prefix http: <http://www.w3.org/2011/http#>.
+@prefix tmpl: <http://purl.org/restdesc/http-template#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+@prefix frap: <http://purl.org/frap/>.
+@prefix bonsai: <http://lpis.csd.auth.gr/ontologies/bonsai/BOnSAI.owl#>.
+@prefix headers: <www.w3.org/2011/http-headers#>.
+@prefix flux: <http://sweet.jpl.nasa.gov/2.2/propEnergyFlux.owl#>.
+
+
+
+{
+	:MyRGBLed               dogont:hasState             ?onOffState;
+							dogont:hasState             ?ColorState;
+							dogont:hasState             ?LightIntensityState.
+
+	?onOffState            	a                           dogont:OnOffState.
+	?ColorState            	a                           dogont:ColorStateRGB.
+	?LightIntensityState   	a                           dogont:LightIntensityState.
+}
+=>
+{
+	_:request 		http:methodName 	"GET";
+					headers:accept      "application/json";
+					http:absoluteURI 	"multicolorlamp";
+					http:resp 			[ tmpl:formData ("state :" ?onOffState ", color: " ?ColorState ", brightness: " ?LightIntensityState) ].
+
+	?onOffState            	dogont:hasStateValue        ?onOffStateValue.
+	?onOffStateValue       	a                           dogont:DiscreteValue;
+							dogont:unitOfMeasure        :Bool;
+							dogont:realStateValue       ?onOff.
+
+
+	?ColorState            	dogont:hasStateValue        ?blueValue;
+							dogont:hasStateValue        ?greenValue;
+							dogont:hasStateValue        ?redValue.
+	?blueValue              a                           dogont:BlueStateValue;
+							dogont:unitOfMeasure        dbpedia:RGB_color_model;
+							dogont:realStateValue       ?blueColor.
+	?greenValue             a                           dogont:GreenStateValue;
+							dogont:unitOfMeasure        dbpedia:RGB_color_model;
+							dogont:realStateValue       ?greenColor.
+	?redValue               a                           dogont:RedStateValue;
+							dogont:unitOfMeasure        dbpedia:RGB_color_model;
+							dogont:realStateValue       ?redColor.
+
+
+	?LightIntensityState   	dogont:hasStateValue        ?LightStateValue.
+	?LightStateValue       	a                           dogont:LevelStateValue;
+							dogont:unitOfMeasure        unit:Lumen;
+							dogont:realStateValue       ?brightness.
+
+}.

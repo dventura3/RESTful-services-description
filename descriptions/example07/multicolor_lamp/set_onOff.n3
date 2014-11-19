@@ -1,0 +1,41 @@
+@prefix : <http://example.org/myontology#>.
+@prefix http: <http://www.w3.org/2011/http#>.
+@prefix tmpl: <http://purl.org/restdesc/http-template#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+@prefix frap: <http://purl.org/frap/>.
+@prefix bonsai: <http://lpis.csd.auth.gr/ontologies/bonsai/BOnSAI.owl#>.
+@prefix headers: <www.w3.org/2011/http-headers#>.
+@prefix flux: <http://sweet.jpl.nasa.gov/2.2/propEnergyFlux.owl#>.
+
+
+#Supposing the status is changed, the conseguence is to have a new state about brightness and rgbColor.
+
+
+{
+	?preference    a           frap:Preference;
+					frap:about  [   a                   frap:Pattern;
+									a              		bonsai:SwitchAction;
+									:unitOfMeasurement 	:Bool;
+									:hasValue       	?value
+								].
+}
+=>
+{
+	_:request 		http:methodName 	"PUT";
+					headers:accept      "application/json";
+					http:absoluteURI 	"multicolorlamp/state";
+					http:body 			[ tmpl:formData ("state :" ?value) ];          #could it be a json object?
+					http:resp 			[ tmpl:represents _:onOffState ].
+
+	:MyRGBLed               dogont:hasState             _:onOffState.
+
+
+	_:onOffState            a                           dogont:OnOffState;
+							dogont:hasStateValue        _:onOffStateValue.
+	_:onOffStateValue       a                           dogont:DiscreteValue;
+							dogont:unitOfMeasure        :Bool;
+							dogont:realStateValue       ?value;
+							:hasBeenChangedBy           ?preference.
+}.

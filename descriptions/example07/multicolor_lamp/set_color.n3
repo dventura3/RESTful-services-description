@@ -1,0 +1,66 @@
+@prefix : <http://example.org/myontology#>.
+@prefix http: <http://www.w3.org/2011/http#>.
+@prefix tmpl: <http://purl.org/restdesc/http-template#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix dbpedia-owl: <http://dbpedia.org/ontology/>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+@prefix frap: <http://purl.org/frap/>.
+@prefix headers: <www.w3.org/2011/http-headers#>.
+
+
+#color should be something like this: http://purl.org/colors/rgb/ff0000
+
+
+{
+	?preference1    a           frap:Preference;
+					frap:about  [   a                   frap:Pattern;
+									a                   dbpedia:Red;
+									:unitOfMeasurement  dbpedia:RGB_color_model;
+									:hasValue           ?redColor
+								].
+
+	?preference2    a           frap:Preference;
+					frap:about  [   a                   frap:Pattern;
+									a                   dbpedia:Green;
+									:unitOfMeasurement  dbpedia:RGB_color_model;
+									:hasValue           ?greenColor
+								].
+
+	?preference3    a           frap:Preference;
+					frap:about  [   a                   frap:Pattern;
+									a                   dbpedia:Blue;
+									:unitOfMeasurement  dbpedia:RGB_color_model;
+									:hasValue           ?blueColor
+								].
+}
+=>
+{
+	_:request 		http:methodName 	"PUT";
+					headers:accept      "application/json";
+					http:absoluteURI 	"multicolorlamp/color" ;
+					http:body 			[ tmpl:formData ("red :" ?redColor ", green :" ?greenColor ", blue:" ?blueColor) ];
+					http:resp 			[ tmpl:represents _:colorState ].
+
+	:MyRGBLed               dogont:hasState             _:colorState.
+
+	_:colorState            a                           dogont:ColorStateRGB;
+							dogont:hasStateValue        _:blueValue;
+							dogont:hasStateValue        _:greenValue;
+							dogont:hasStateValue        _:redValue.
+
+	_:blueValue             a                           dogont:BlueStateValue;
+							dogont:unitOfMeasure        dbpedia:RGB_color_model;
+							dogont:realStateValue       ?blueColor;
+							:hasBeenChangedBy           ?preference3.
+
+	_:greenValue            a                           dogont:GreenStateValue;
+							dogont:unitOfMeasure        dbpedia:RGB_color_model;
+							dogont:realStateValue       ?greenColor;
+							:hasBeenChangedBy           ?preference2.
+
+	_:redValue              a                           dogont:RedStateValue;
+							dogont:unitOfMeasure        dbpedia:RGB_color_model;
+							dogont:realStateValue       ?redColor;
+							:hasBeenChangedBy           ?preference1.
+}.

@@ -1,0 +1,25 @@
+@prefix : <http://example.org/myontology#>.
+@prefix http: <http://www.w3.org/2011/http#>.
+@prefix tmpl: <http://purl.org/restdesc/http-template#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix flux: <http://sweet.jpl.nasa.gov/2.2/propEnergyFlux.owl#>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+@prefix headers: <www.w3.org/2011/http-headers#>.
+
+
+{
+	:MyRGBLed               dogont:hasState             ?lightIntensityState.
+	?lightIntensityState   	a                           dogont:LightIntensityState.
+}
+=>
+{
+	_:request 		http:methodName 	"GET" ;
+					headers:accept      "application/json";
+					http:absoluteURI 	"multicolorlamp/brightness" ;
+					http:resp 			[ tmpl:represents ?lightIntensityState ].
+
+	?lightIntensityState   	dogont:hasStateValue        ?lightStateValue.
+	?lightStateValue       	a                           dogont:LevelStateValue;
+							dogont:unitOfMeasure        unit:Lumen;
+							dogont:realStateValue       ?brightness.
+}.
