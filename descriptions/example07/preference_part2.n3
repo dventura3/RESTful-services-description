@@ -8,5 +8,5 @@
                     		frap:about  [   a           		frap:Pattern;
                                     		a                   thermo:Temperature;
                                     		:unitOfMeasurement  unit:DegreeCelsius;
-                                    		:hasValue           "20"
+                                    		:hasValue           "30"
                                 ].
