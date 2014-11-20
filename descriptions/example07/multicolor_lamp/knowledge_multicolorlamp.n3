@@ -10,41 +10,41 @@
 
 
 :MyRGBLed a bonsai:Actuator;
-		  a dbpedia:Actuator;
-		  a dbpedia:Light-emitting_diode;
-		  foi:featureOfInterest _:light.
+          a dbpedia:Actuator;
+          a dbpedia:Light-emitting_diode;
+          foi:featureOfInterest _:light.
 
 
 #### THIS PART COULD BE DONE USING INDIVIDUALS OF AN ONTOLOGY (not using blank nodes)
 #### TO CHECK!
 
 _:light a foi:FeatureOfInterest;
-		a sweet:Light;
-		foi:hasPropertyFeature _:brightness;
-		foi:hasPropertyFeature _:color.
+        a sweet:Light;
+        foi:hasPropertyFeature _:brightness;
+        foi:hasPropertyFeature _:color.
 
 _:brightness a foi:PropertyOfFeature;
-			 a flux:Brightness;
-			 foi:hasPropertyTypeValue _:brightnessRange.
+             a flux:Brightness;
+             foi:hasPropertyTypeValue _:brightnessRange.
 
 _:brightnessRange a foi:PropertyTypeValue;
-				  foi:isClassifiedBy unit:Lumen;
-				  foi:hasMinValue [ a foi:MinPropertyValue; foi:hasQuantityValue "0"];
-				  foi:hasMaxValue [ a foi:MaxPropertyValue; foi:hasQuantityValue "100"].
+                  foi:isClassifiedBy unit:Lumen;
+                  foi:hasMinValue [ a foi:MinPropertyValue; foi:hasQuantityValue "0"];
+                  foi:hasMaxValue [ a foi:MaxPropertyValue; foi:hasQuantityValue "100"].
 
 _:color a foi:PropertyOfFeature;
-		a  dbpedia-owl:Colour;
-		foi:hasPropertyTypeValue _:colorRangeRGB.
+        a dbpedia-owl:Colour;
+        foi:hasPropertyTypeValue _:colorRangeRGB.
 
-_:colorRangeRGB a  foi:PropertyTypeValue;
-				foi:isClassifiedBy dbpedia:RGB_color_model;
-				foi:hasMinValue [ a foi:MinPropertyValue; foi:hasQuantityValue "0"];
-				foi:hasMaxValue [ a foi:MaxPropertyValue; foi:hasQuantityValue "255"].
+_:colorRangeRGB a foi:PropertyTypeValue;
+                foi:isClassifiedBy dbpedia:RGB_color_model;
+                foi:hasMinValue [ a foi:MinPropertyValue; foi:hasQuantityValue "0"];
+                foi:hasMaxValue [ a foi:MaxPropertyValue; foi:hasQuantityValue "255"].
 
 
 ###################### DEFAULT States ##########################
 
 
 :MyRGBLed dogont:hasState [a dogont:OnOffState];
-		  dogont:hasState [a dogont:LightIntensityState];
-		  dogont:hasState [a dogont:ColorStateRGB].
+          dogont:hasState [a dogont:LightIntensityState];
+          dogont:hasState [a dogont:ColorStateRGB].

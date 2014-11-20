@@ -7,11 +7,11 @@
 
 
 {
-	?obj dogont:hasState ?tempState;
-		 foi:featureOfInterest ?temp.
+    ?obj dogont:hasState ?tempState;
+         foi:featureOfInterest ?temp.
 
-	?temp a foi:FeatureOfInterest;
-		  a thermo:Temperature.
+    ?temp a foi:FeatureOfInterest;
+          a thermo:Temperature.
 
     ?preference a  frap:Preference.
 
@@ -23,5 +23,5 @@
 }
 =>
 {
-	?obj dogont:hasState ?tempState.
+    ?obj dogont:hasState ?tempState.
 }.

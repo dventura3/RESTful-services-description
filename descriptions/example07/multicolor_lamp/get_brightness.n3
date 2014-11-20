@@ -8,18 +8,18 @@
 
 
 {
-	:MyRGBLed dogont:hasState ?lightIntensityState.
-	?lightIntensityState a dogont:LightIntensityState.
+    :MyRGBLed dogont:hasState ?lightIntensityState.
+    ?lightIntensityState a dogont:LightIntensityState.
 }
 =>
 {
-	_:request http:methodName "GET" ;
-			  headers:accept "application/json";
-			  http:absoluteURI "multicolorlamp/brightness" ;
-			  http:resp [ tmpl:represents ?lightIntensityState ].
+    _:request http:methodName "GET" ;
+              headers:accept "application/json";
+              http:absoluteURI "multicolorlamp/brightness" ;
+              http:resp [ tmpl:represents ?lightIntensityState ].
 
-	?lightIntensityState dogont:hasStateValue ?lightStateValue.
-	?lightStateValue a dogont:LevelStateValue;
-					 dogont:unitOfMeasure unit:Lumen;
-					 dogont:realStateValue ?brightness.
+    ?lightIntensityState dogont:hasStateValue ?lightStateValue.
+    ?lightStateValue a dogont:LevelStateValue;
+                     dogont:unitOfMeasure unit:Lumen;
+                     dogont:realStateValue ?brightness.
 }.

@@ -22,4 +22,4 @@ _:preference3 a frap:Preference;
                            a dbpedia:Blue;
                            :unitOfMeasurement dbpedia:RGB_color_model;
                            :hasValue "255"
-                            ].
+                        ].
