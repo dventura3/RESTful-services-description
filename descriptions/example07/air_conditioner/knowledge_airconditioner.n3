@@ -12,13 +12,13 @@
 # New things to do: add a sensor able to get the current temperature.
 
 :MyAirConditioner a dbpedia:Air_Conditioner;
-      			  :attachedSystem :MyActuatorForAirConditioner.
+                  :attachedSystem :MyActuatorForAirConditioner.
 
 
 :MyActuatorForAirConditioner a dbpedia:Actuator;
-							 ssn:featureOfInterest thermo:Temperature;
-							 foi:featureOfInterest _:temp.
+                             ssn:featureOfInterest thermo:Temperature;
+                             foi:featureOfInterest _:temp.
 
 
 _:temp a foi:FeatureOfInterest;
-	   a thermo:Temperature.
+       a thermo:Temperature.
