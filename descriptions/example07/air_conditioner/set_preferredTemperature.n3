@@ -11,27 +11,28 @@
 
 
 {
-  ?preference       a           frap:Preference;
-                    frap:about  [   a                   frap:Pattern;
-                                    a                   thermo:Temperature;
-                                    :unitOfMeasurement  unit:DegreeCelsius;
-                                    :hasValue           ?value
-                                ].
+  ?preference  a  frap:Preference;
+               frap:about  [ a frap:Pattern;
+                             a thermo:Temperature;
+                             :unitOfMeasurement unit:DegreeCelsius;
+                             :hasValue ?value
+                            ].
 }
 =>
 {
-  _:request         http:methodName         "PUT";
-                    http:requestURI         "airconditioner/preferredTemperature";
-                    headers:accept          "application/json";
-                    http:body               [ tmpl:formData ("preferredTemperature :" ?value) ];
-                    http:resp               [ tmpl:represents _:tempState ].
+  _:request http:methodName "PUT";
+            http:requestURI "airconditioner/preferredTemperature";
+            headers:accept "application/json";
+            http:body [ tmpl:formData ("preferredTemperature :" ?value) ];
+            http:resp  [ tmpl:represents _:tempState ].
 
-    :MyActuatorForAirConditioner            dogont:hasState         _:tempState.
+    :MyActuatorForAirConditioner dogont:hasState _:tempState.
 
-    _:tempState                             a                       dogont:TemperatureState;
-                                            dogont:hasStateValue    _:tempStateValue.
-    _:tempStateValue                        a                       dogont:TemperatureStateValue;
-                                            dogont:unitOfMeasure    unit:DegreeCelsius;
-                                            dogont:realStateValue   ?value;
-                                            :hasBeenChangedBy       ?preference.
+    _:tempState a dogont:TemperatureState;
+                dogont:hasStateValue _:tempStateValue.
+
+    _:tempStateValue a dogont:TemperatureStateValue;
+                     dogont:unitOfMeasure unit:DegreeCelsius;
+                     dogont:realStateValue ?value;
+                     :hasBeenChangedBy ?preference.
 }.

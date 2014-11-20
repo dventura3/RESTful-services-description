@@ -9,31 +9,31 @@
 
 
 {
-	?obj			dogont:hasState  			?colorState;
-					foi:featureOfInterest		?light.
+	?obj dogont:hasState ?colorState;
+		 foi:featureOfInterest ?light.
 
-	?light 			a 							foi:FeatureOfInterest;
-					a 							sweet:Light.
+	?light a foi:FeatureOfInterest;
+		   a sweet:Light.
 
-    ?preference1 	a 							frap:Preference.
-    ?preference2 	a 							frap:Preference.
-    ?preference3 	a 							frap:Preference.
+    ?preference1 a frap:Preference.
+    ?preference2 a frap:Preference.
+    ?preference3 a frap:Preference.
 
-	?colorState             a                           dogont:ColorStateRGB;
-                            dogont:hasStateValue        ?blueValue;
-                            dogont:hasStateValue        ?greenValue;
-                            dogont:hasStateValue        ?redValue.
+	?colorState a dogont:ColorStateRGB;
+                dogont:hasStateValue ?blueValue;
+                dogont:hasStateValue ?greenValue;
+                dogont:hasStateValue ?redValue.
 
-    ?blueValue              a                           dogont:BlueStateValue;
-                            :hasBeenChangedBy           ?preference3.
+    ?blueValue a dogont:BlueStateValue;
+               :hasBeenChangedBy ?preference3.
 
-    ?greenValue             a                           dogont:GreenStateValue;
-                            :hasBeenChangedBy           ?preference2.
+    ?greenValue a dogont:GreenStateValue;
+                :hasBeenChangedBy ?preference2.
 
-    ?redValue               a                           dogont:RedStateValue;
-                            :hasBeenChangedBy           ?preference1.
+    ?redValue a dogont:RedStateValue;
+              :hasBeenChangedBy ?preference1.
 }
 =>
 {
-	?obj			dogont:hasState  			?colorState;
+	?obj dogont:hasState ?colorState.
 }.

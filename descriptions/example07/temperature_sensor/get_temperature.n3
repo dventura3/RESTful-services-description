@@ -11,25 +11,25 @@
 # sensortemperature/temperature
 
 {
-	?observation    a           	ssn:Observation;
-									ssn:observedProperty  thermo:Temperature.
+	?observation a ssn:Observation;
+				 ssn:observedProperty thermo:Temperature.
 }
 =>
 {
-	_:request 						http:methodName     "GET";
-									headers:accept      "application/json";
-									http:requestURI     "sensortemperature/temperature" ;
-									http:resp           [ tmpl:formData ("value :" _:val) ].
+	_:request 	http:methodName "GET";
+				headers:accept "application/json";
+				http:requestURI "sensortemperature/temperature" ;
+				http:resp [ tmpl:formData ("value :" _:val) ].
 	
-	?observation            a       				ssn:Observation;
-							ssn:observedBy      	:MySensorTemperature;
-							ssn:observedProperty 	thermo:Temperature;
-							ssn:observationResult 	_:ResultedTemperature.
+	?observation a ssn:Observation;
+				 ssn:observedBy :MySensorTemperature;
+				 ssn:observedProperty thermo:Temperature;
+				 ssn:observationResult _:ResultedTemperature.
 
-	_:ResultedTemperature   a                   	ssn:SensorOutput;
-							ssn:hasValue        	_:CurrentTemperature.
+	_:ResultedTemperature   a ssn:SensorOutput;
+							ssn:hasValue _:CurrentTemperature.
 
-	_:CurrentTemperature    a                   	ssn:ObservationValue;
-							dul:isClassifiedBy  	unit:DegreeCelsius;
-							dul:hasDataValue    	_:val.
+	_:CurrentTemperature    a ssn:ObservationValue;
+							dul:isClassifiedBy unit:DegreeCelsius;
+							dul:hasDataValue _:val.
 }.

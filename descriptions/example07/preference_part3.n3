@@ -3,23 +3,23 @@
 @prefix dbpedia: <http://dbpedia.org/resource/>.
 
 
-_:preference1   a           frap:Preference;
-                frap:about  [   a                   frap:Pattern;
-                                a                   dbpedia:Red;
-                                :unitOfMeasurement  dbpedia:RGB_color_model;
-                                :hasValue           "150"
-                            ].
+_:preference1 a frap:Preference;
+              frap:about [ a frap:Pattern;
+                           a dbpedia:Red;
+                           :unitOfMeasurement dbpedia:RGB_color_model;
+                           :hasValue "150"
+                        ].
 
-_:preference2   a           frap:Preference;
-                frap:about  [   a                   frap:Pattern;
-                                a                   dbpedia:Green;
-                                :unitOfMeasurement  dbpedia:RGB_color_model;
-                                :hasValue           "0"
-                            ].
+_:preference2 a frap:Preference;
+              frap:about [ a frap:Pattern;
+                           a dbpedia:Green;
+                           :unitOfMeasurement dbpedia:RGB_color_model;
+                           :hasValue "0"
+                        ].
 
-_:preference3   a           frap:Preference;
-                frap:about  [   a                   frap:Pattern;
-                                a                   dbpedia:Blue;
-                                :unitOfMeasurement  dbpedia:RGB_color_model;
-                                :hasValue           "255"
+_:preference3 a frap:Preference;
+              frap:about [ a frap:Pattern;
+                           a dbpedia:Blue;
+                           :unitOfMeasurement dbpedia:RGB_color_model;
+                           :hasValue "255"
                             ].

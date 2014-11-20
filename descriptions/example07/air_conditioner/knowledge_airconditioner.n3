@@ -11,14 +11,14 @@
 # Air Conditioner is the platform. It contains an actuator to set the working/preferred temperature.
 # New things to do: add a sensor able to get the current temperature.
 
-:MyAirConditioner				a 							dbpedia:Air_Conditioner;
-      							:attachedSystem 			:MyActuatorForAirConditioner.
+:MyAirConditioner a dbpedia:Air_Conditioner;
+      			  :attachedSystem :MyActuatorForAirConditioner.
 
 
-:MyActuatorForAirConditioner	a 							dbpedia:Actuator;
-								ssn:featureOfInterest 		thermo:Temperature;
-								foi:featureOfInterest 		_:temp.
+:MyActuatorForAirConditioner a dbpedia:Actuator;
+							 ssn:featureOfInterest thermo:Temperature;
+							 foi:featureOfInterest _:temp.
 
 
-_:temp 							a 							foi:FeatureOfInterest;
-								a 							thermo:Temperature.
+_:temp a foi:FeatureOfInterest;
+	   a thermo:Temperature.

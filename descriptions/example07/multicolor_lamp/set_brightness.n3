@@ -12,28 +12,28 @@
 
 
 {
-	?preference     a           frap:Preference;
-					frap:about  [   a                   frap:Pattern;
-									a                   flux:Brightness;
-									:unitOfMeasurement  unit:Lumen;
-									:hasValue           ?brightness
-								].
+	?preference a frap:Preference;
+				frap:about [ a frap:Pattern;
+							 a flux:Brightness;
+							 :unitOfMeasurement unit:Lumen;
+							 :hasValue ?brightness
+							].
 }
 =>
 {
-	_:request 		http:methodName 	"PUT";
-					headers:accept      "application/json";
-					http:absoluteURI 	"multicolorlamp/brightness" ;
-					http:body 			[ tmpl:formData ("brightness :" ?brightness) ];    #json? or simple body?
-					http:resp 			[ tmpl:represents _:lightIntensityState ].
+	_:request http:methodName "PUT";
+			  headers:accept "application/json";
+			  http:absoluteURI "multicolorlamp/brightness" ;
+			  http:body [ tmpl:formData ("brightness :" ?brightness) ];    #json? or simple body?
+			  http:resp [ tmpl:represents _:lightIntensityState ].
 
-	:MyRGBLed               dogont:hasState             _:lightIntensityState.
+	:MyRGBLed dogont:hasState _:lightIntensityState.
 
-	_:lightIntensityState   a                           dogont:LightIntensityState;
-							dogont:hasStateValue        _:lightStateValue.
+	_:lightIntensityState a dogont:LightIntensityState;
+						  dogont:hasStateValue _:lightStateValue.
 
-	_:lightStateValue       a                           dogont:LevelStateValue;
-							dogont:unitOfMeasure        unit:Lumen;
-							dogont:realStateValue       ?brightness;
-							:hasBeenChangedBy           ?preference.
+	_:lightStateValue a dogont:LevelStateValue;
+					  dogont:unitOfMeasure unit:Lumen;
+					  dogont:realStateValue ?brightness;
+					  :hasBeenChangedBy ?preference.
 }.

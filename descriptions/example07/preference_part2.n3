@@ -4,9 +4,9 @@
 @prefix : <http://example.org/myontology#>.
 
 
-?preference       a         frap:Preference;
-                    		frap:about  [   a           		frap:Pattern;
-                                    		a                   thermo:Temperature;
-                                    		:unitOfMeasurement  unit:DegreeCelsius;
-                                    		:hasValue           "30"
-                                ].
+?preference a frap:Preference;
+            frap:about [ a frap:Pattern;
+                         a thermo:Temperature;
+                         :unitOfMeasurement unit:DegreeCelsius;
+                         :hasValue "30"
+                        ].

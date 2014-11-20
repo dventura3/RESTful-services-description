@@ -10,27 +10,28 @@
 
 
 {
-	?preference    a           frap:Preference;
-                    frap:about  [   a                   frap:Pattern;
-                                    a                   bonsai:SwitchAction;
-                                    :unitOfMeasurement  :Bool;
-                                    :hasValue           ?value
-                                ].
+	?preference a frap:Preference;
+                frap:about  [ a frap:Pattern;
+                              a bonsai:SwitchAction;
+                              :unitOfMeasurement :Bool;
+                              :hasValue ?value
+                            ].
 }
 =>
 {
-	_:request 		http:methodName 	"PUT";
-                    headers:accept      "application/json";
-            		http:absoluteURI 	"lamp";
-            		http:body 			[ tmpl:formData ("state :" ?value) ];
-            		http:resp 			[ tmpl:represents _:onOffState ].
+	_:request http:methodName "PUT";
+              headers:accept "application/json";
+              http:absoluteURI "lamp";
+              http:body [ tmpl:formData ("state :" ?value) ];
+              http:resp [ tmpl:represents _:onOffState ].
 
-    :MyLamp                 dogont:hasState             _:OnOffState.
+    :MyLamp dogont:hasState _:OnOffState.
 
-    _:onOffState            a                           dogont:OnOffState;
-                            dogont:hasStateValue        _:onOffStateValue.
-    _:onOffStateValue       a                           dogont:DiscreteValue;
-                            dogont:unitOfMeasure        :Bool;
-                            dogont:realStateValue       ?value;
-                            :hasBeenChangedBy           ?preference.
+    _:onOffState  a dogont:OnOffState;
+                  dogont:hasStateValue _:onOffStateValue.
+
+    _:onOffStateValue a dogont:DiscreteValue;
+                      dogont:unitOfMeasure :Bool;
+                      dogont:realStateValue ?value;
+                      :hasBeenChangedBy ?preference.
 }.

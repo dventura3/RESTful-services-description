@@ -7,14 +7,14 @@
 
 
 
-:MySensorTemperature	a 							ssn:SensingDevice;				#subClassOf ssn:Sensor
-			  			ssn:madeObservation 		_:tempObservation;
-			  			ssn:featureOfInterest		thermo:Temperature;
-			  			foi:featureOfInterest 		_:temp.
+:MySensorTemperature a ssn:SensingDevice;						#subClassOf ssn:Sensor
+			  		 ssn:madeObservation _:tempObservation;
+			  		 ssn:featureOfInterest thermo:Temperature;
+			  		 foi:featureOfInterest _:temp.
 
-_:tempObservation 		a 							ssn:Observation;
-						ssn:observedBy      		:MySensorTemperature;
-						ssn:observedProperty 		thermo:Temperature.
+_:tempObservation a ssn:Observation;
+				  ssn:observedBy :MySensorTemperature;
+				  ssn:observedProperty thermo:Temperature.
 
-_:temp 					a 							foi:FeatureOfInterest;
-						a 							thermo:Temperature.
+_:temp  a foi:FeatureOfInterest;
+		a thermo:Temperature.

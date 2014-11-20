@@ -9,19 +9,19 @@
 
 
 {
-	:MyLamp			    dogont:hasState         	?onOffState.
-	?onOffState 		a                           dogont:OnOffState.
+	:MyLamp dogont:hasState ?onOffState.
+	?onOffState a dogont:OnOffState.
 }
 =>
 {
-	_:request 		http:methodName 	"GET" ;
-					headers:accept      "application/json";
-					http:absoluteURI 	"lamp" ;
-					http:resp 			[ tmpl:represents ?onOffState ].
+	_:request http:methodName "GET" ;
+			  headers:accept "application/json";
+			  http:absoluteURI "lamp" ;
+			  http:resp [ tmpl:represents ?onOffState ].
 
-	?onOffState         dogont:hasStateValue        ?onOffStateValue.
+	?onOffState dogont:hasStateValue ?onOffStateValue.
 
-	?onOffStateValue    a                           dogont:DiscreteValue;
-						dogont:unitOfMeasure        :Bool;
-						dogont:realStateValue       ?value.
+	?onOffStateValue a dogont:DiscreteValue;
+					 dogont:unitOfMeasure :Bool;
+					 dogont:realStateValue ?value.
 }.
