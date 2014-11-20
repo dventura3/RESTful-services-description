@@ -10,7 +10,7 @@
 
 
 {
-	?preference a frap:Preference;
+  ?preference a frap:Preference;
                 frap:about  [ a frap:Pattern;
                               a bonsai:SwitchAction;
                               :unitOfMeasurement :Bool;
@@ -19,7 +19,7 @@
 }
 =>
 {
-	_:request http:methodName "PUT";
+  _:request http:methodName "PUT";
               headers:accept "application/json";
               http:absoluteURI "lamp";
               http:body [ tmpl:formData ("state :" ?value) ];

@@ -5,12 +5,12 @@
 @prefix foi: <http://www.foi.org/featuresForSmartThings#>.
 
 
-:MyLamp	a dbpedia:Actuator;
-		a dbpedia:Lamp;
-		foi:featureOfInterest _:light.
+:MyLamp a dbpedia:Actuator;
+        a dbpedia:Lamp;
+        foi:featureOfInterest _:light.
 
 _:light a foi:FeatureOfInterest;
-		a sweet:Light.
+        a sweet:Light.
 
 
 
