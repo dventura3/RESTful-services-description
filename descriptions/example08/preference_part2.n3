@@ -1,0 +1,4 @@
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix : <http://example.org/myontology#>.
+
+<titanic.avi> 	a 		dbpedia:Path.

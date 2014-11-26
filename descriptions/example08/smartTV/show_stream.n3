@@ -1,0 +1,26 @@
+@prefix http: <http://www.w3.org/2006/http#>.
+@prefix tmpl: <http://purl.org/restdesc/http-template#>.
+@prefix dc: <http://purl.org/dc/elements/1.1/>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix mo: <http://purl.org/ontology/mo/>.
+@prefix media: 	<http://purl.org/syndication/atommedia>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+@prefix : <http://example.org/myontology#>.
+
+
+{
+	?stream 			a 					dbpedia:Stream;
+}
+=>
+{
+	_:request		http:methodName		"PUT";
+					http:absoluteURI	"smarttv/watchStream";
+					http:body			?stream.
+
+	:MySmartTV 				dogont:hasState			_:watchingState.
+
+	_:watchingState			a 						dogont:State; 				#:WatchState;
+							dogont:hasStateValue	_:watchingStateValue.
+	_:watchingStateValue 	a 						dogont:StateValue; 			#:WatchStateValue;
+							dogont:realStateValue 	"watching".					#streaming? tuner?
+}.

@@ -1,0 +1,10 @@
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix : <http://example.org/myontology#>.
+@prefix foi: <http://www.foi.org/featuresForSmartThings#>.
+
+
+:MyDVDrecorder			a							dbpedia:DVD_recorder;
+						foi:featureOfInterest 		_:recording.
+
+_:recording 			a 							foi:FeatureOfInterest;
+						a							dbpedia:Recording.

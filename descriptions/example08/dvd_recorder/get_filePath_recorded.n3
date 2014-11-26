@@ -1,0 +1,25 @@
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix dc: <http://purl.org/dc/elements/1.1/>.
+@prefix http: <http://www.w3.org/2006/http#>.
+@prefix tmpl: <http://purl.org/restdesc/http-template#>.
+@prefix headers: <www.w3.org/2011/http-headers#>.
+@prefix : <http://example.org/myontology#>.
+
+
+{
+	?recording			a 					dbpedia:Recording;
+						:recordingID	 	?idRecording;
+}
+=>
+{
+	_:request			http:methodName		"GET";
+						http:requestURI		("dvdrecorder/record/" ?idRecording);
+						headers:accept      "application/json";
+						http:body 			[ tmpl:formData ("filePath:" ?pathFile) ].
+
+	?pathFile			a 					dbpedia:Path.
+
+	?recording 			:fileAssociated 	?media.
+
+	?media 				:isStoredIn			?pathFile.
+}.

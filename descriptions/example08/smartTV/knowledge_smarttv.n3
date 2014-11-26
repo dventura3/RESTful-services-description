@@ -1,0 +1,18 @@
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix : <http://example.org/myontology#>.
+@prefix foi: <http://www.foi.org/featuresForSmartThings#>.
+
+:MySmartTV			a							dbpedia:Smart_TV;
+					foi:featureOfInterest 		_:video;
+					foi:featureOfInterest 		_:audio;
+					foi:featureOfInterest 		_:channel.
+
+
+_:video 			a 							foi:FeatureOfInterest;
+					a 							dbpedia:Video.
+
+_:audio 			a 							foi:FeatureOfInterest;
+					a 							dbpedia:Audio.
+
+_:channel 			a 							foi:FeatureOfInterest;
+					a 							dbpedia:Channel.

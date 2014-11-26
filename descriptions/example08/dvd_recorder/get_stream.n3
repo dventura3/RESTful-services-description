@@ -1,0 +1,34 @@
+@prefix http: <http://www.w3.org/2006/http#>.
+@prefix tmpl: <http://purl.org/restdesc/http-template#>.
+@prefix dc: <http://purl.org/dc/elements/1.1/>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix mo: <http://purl.org/ontology/mo/>. #mo:Recording & mo:Stream - ma solo per musica! :(
+@prefix media: 	<http://purl.org/syndication/atommedia>. #media:MediaContent - Audio e Video. da riesaminare
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+@prefix : <http://example.org/myontology#>.
+
+
+{
+	?pathFile		a 					dbpedia:Path.
+}
+=>
+{
+	_:request		http:methodName		"PUT";
+					http:absoluteURI	"dvdrecorder/startStreaming";
+					http:body			?pathFile;
+					http:resp			_:stream.
+
+	?media				:isStoredIn				?pathFile.
+
+	_:stream 			a 						dbpedia:Stream;
+						:sourceContent			?media.
+
+	##NEW STATE: "playing"
+
+	:MyDVDrecorder 		dogont:hasState			_:playingState.
+
+	_:playingState		a 						dogont:PlayState;
+						dogont:hasStateValue	_:playingStateValue.
+	_:playingStateValue a 						dogont:PlayStateValue;
+						dogont:realStateValue 	"playing".
+}.

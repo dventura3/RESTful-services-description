@@ -1,0 +1,19 @@
+@prefix : <http://example.org/myontology#>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+
+{
+	?recording			a 							dbpedia:Recording;
+						:recordingID	 			?idRecording.
+
+	?obj 				dogont:hasState				?programmedState.
+
+	?programmedState		a 						dogont:ProgramState;
+							dogont:hasStateValue	?programmedStateValue.
+	?programmedStateValue 	a 						dogont:ProgrammedStateValue;
+							dogont:realStateValue 	"programmed".
+}
+=>
+{
+	?obj 				dogont:hasState			?programmedState.	
+}.

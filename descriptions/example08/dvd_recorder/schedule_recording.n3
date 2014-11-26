@@ -1,0 +1,58 @@
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix dcmit: <http://purl.org/dc/dcmitype/>.
+@prefix dc: <http://purl.org/dc/elements/1.1/>.
+@prefix http: <http://www.w3.org/2006/http#>.
+@prefix tmpl: <http://purl.org/restdesc/http-template#>.
+@prefix headers: <www.w3.org/2011/http-headers#>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+@prefix owl-time: <http://www.w3.org/TR/owl-time>.
+@prefix : <http://example.org/myontology#>.
+
+{
+	#come unificare queste tre informazioni? si potrebbe creare una preference? serve?
+
+	?channel 			a 						dbpedia:TelevisionStation;
+						:hasName				?nameChannel.
+
+	?duration			a 						owl-time:Interval;
+						owl-time:hasBeginning	?startingTime;
+						owl-time:hasEnd			?endingTime.
+
+	?startingTime 		a 						owl-time:Instant;
+						owl-time:inDateTime 	[
+													a       			owl-time:DateTimeDescription;
+													owl-time:unitType 	owl-time:unitMinute;
+												].
+
+	?endingTime 		a 						owl-time:Instant;
+						owl-time:inDateTime 	[
+													a       			owl-time:DateTimeDescription;
+													owl-time:unitType 	owl-time:unitMinute;
+												].
+}
+=>
+{
+	_:request			http:methodName 	"POST";
+						headers:accept      "application/json";
+						http:body 			[ tmpl:formData ("channel:" ?channel ", duration:" ?duration) ];
+						http:absoluteURI 	"dvdrecorder/record";
+						http:resp			("dvdrecorder/record/" ?idRecording).
+
+	_:recording			a 					dbpedia:Recording;
+						:recordingID	 	?idRecording;
+						:fileAssociated 	_:media;
+						:hasDuration 		?duration.
+
+																#si potrebbe separare tra Audio e Video usando media ontology
+	_:media				a 					dbpedia:Computer_file;
+						a					dbpedia:Digital_media;
+						dc:type 			dcmit:MovingImage;
+						dc:type 			dcmit:Sound.
+
+	:MyDVDrecorder 			dogont:hasState			_:programmedState.
+
+	_:programmedState		a 						dogont:ProgramState;
+							dogont:hasStateValue	_:programmedStateValue.
+	_:programmedStateValue 	a 						dogont:ProgrammedStateValue;
+							dogont:realStateValue 	"programmed".
+}.

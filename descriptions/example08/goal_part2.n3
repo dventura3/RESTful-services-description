@@ -1,0 +1,16 @@
+@prefix : <http://example.org/myontology#>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+
+
+{
+	?obj 					dogont:hasState			?watchingState.
+
+	?watchingState			a 						dogont:State;
+							dogont:hasStateValue	?watchingStateValue.
+	?watchingStateValue 	a 						dogont:StateValue;
+							dogont:realStateValue 	"watching".		
+}
+=>
+{
+	?obj 					dogont:hasState			?watchingState.
+}.

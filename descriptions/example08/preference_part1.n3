@@ -1,0 +1,33 @@
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix : <http://example.org/myontology#>.
+@prefix owl-time: <http://www.w3.org/TR/owl-time>.
+
+
+_:Channel			a 					dbpedia:TelevisionStation;
+					:hasName			"BBC".
+
+_:duration			a 						owl-time:Interval;
+					owl-time:hasBeginning	_:startingTime;
+					owl-time:hasEnd			_:endingTime.
+
+_:startingTime 		a 						owl-time:Instant;
+					owl-time:inDateTime 	[
+												a       			owl-time:DateTimeDescription ;
+												owl-time:unitType 	owl-time:unitMinute ;
+  												owl-time:minute 	0 ;
+  												owl-time:hour 		20 ;
+  												owl-time:day 		15 ;
+  												owl-time:month 		12 ;
+  												owl-time:year 		2014
+											].
+
+_:endingTime 		a 						owl-time:Instant;
+					owl-time:inDateTime 	[
+												a       			owl-time:DateTimeDescription ;
+												owl-time:unitType 	owl-time:unitMinute ;
+  												owl-time:minute 	0 ;
+  												owl-time:hour 		22 ;
+  												owl-time:day 		15 ;
+  												owl-time:month 		12 ;
+  												owl-time:year 		2014
+											].
