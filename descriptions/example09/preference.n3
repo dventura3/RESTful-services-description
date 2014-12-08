@@ -1,0 +1,13 @@
+@prefix : <http://example.org/myontology#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix flux: <http://sweet.jpl.nasa.gov/2.2/propEnergyFlux.owl#>.
+@prefix frap: <http://purl.org/frap/>.
+@prefix bonsai: <http://lpis.csd.auth.gr/ontologies/bonsai/BOnSAI.owl#>.
+
+
+:preference a frap:Preference;
+                frap:about [ a  frap:Pattern;
+                             a  bonsai:SwitchAction;
+                             :unitOfMeasurement :Bool;
+                             :hasValue "true"
+                ].

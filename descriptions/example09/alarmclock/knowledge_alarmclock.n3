@@ -1,0 +1,14 @@
+@prefix : <http://example.org/myontology#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix ex: <http://www.example.org/usecase03#> .
+@prefix foi: <http://www.foi.org/featuresForSmartThings#>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+
+
+:MyAlarmClock a dbpedia:Alarm_clock;
+			  foi:featureOfInterest ex:A1.
+
+ex:A1 a foi:FeatureOfInterest.
+
+
+:MyAlarmClock dogont:hasState [a dogont:OnOffState].

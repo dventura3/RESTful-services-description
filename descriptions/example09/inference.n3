@@ -1,0 +1,32 @@
+@prefix ex: <http://www.example.org/usecase03#> .
+
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix foi: <http://www.foi.org/featuresForSmartThings#>.
+
+
+##rule 001  => Ereditarietà
+{
+	?x a ?class.
+	?class rdfs:subClassOf ?motherClass.
+}
+=>
+{
+	?x a ?motherClass.
+}.
+
+
+
+##rule 002  => canBe (NON è GENERICA!)
+{
+	?x a ?classX.
+	?y a ?classY.
+	?x ex:canBe ?y.
+}
+=>
+{
+	?y a ?classX.
+}.
+
+

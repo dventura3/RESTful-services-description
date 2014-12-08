@@ -1,0 +1,32 @@
+@prefix : <http://example.org/myontology#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix flux: <http://sweet.jpl.nasa.gov/2.2/propEnergyFlux.owl#>.
+@prefix frap: <http://purl.org/frap/>.
+@prefix bonsai: <http://lpis.csd.auth.gr/ontologies/bonsai/BOnSAI.owl#>.
+@prefix foi: <http://www.foi.org/featuresForSmartThings#>.
+@prefix sweet: <http://sweet.jpl.nasa.gov/>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+@prefix ex: <http://www.example.org/usecase03#> .
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+
+
+{
+	?obj dogont:hasState ?onOffState;
+		 foi:featureOfInterest ?alarm.
+
+	?alarm 	a foi:FeatureOfInterest;
+			a ex:Alarm.
+
+	?preference a frap:Preference.
+
+	?onOffState a dogont:OnOffState;
+                dogont:hasStateValue ?onOffStateValue.
+    ?onOffStateValue  a dogont:DiscreteValue;
+                      dogont:unitOfMeasure :Bool;
+                      dogont:realStateValue ?value;
+                      :hasBeenChangedBy ?preference.
+}
+=>
+{
+	?obj dogont:hasState ?onOffState;
+}.

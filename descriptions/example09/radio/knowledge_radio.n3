@@ -1,0 +1,13 @@
+@prefix : <http://example.org/myontology#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix ex: <http://www.example.org/usecase03#> .
+@prefix foi: <http://www.foi.org/featuresForSmartThings#>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+
+
+:MyRadio  a dbpedia:Radio;
+		  foi:featureOfInterest ex:S1.
+
+ex:S1 a foi:FeatureOfInterest.
+
+:MyRadio dogont:hasState [a dogont:OnOffState].
