@@ -1,0 +1,40 @@
+@prefix : <http://example.org/smartobject#>.
+@prefix http: <http://www.w3.org/2011/http#>.
+@prefix st: <http://www.mystates.org/states#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix thermo: <http://sweet.jpl.nasa.gov/2.2/quanTemperature.owl#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+
+
+{
+	#Qui devono essere presenti i seguenti concetti:
+	# - L'oggetto ha già uno stato (che è lo stato vecchio)
+	# - Lo stato vecchio è legato al concetto di temperatura!
+	# - Ho un nuovo valore di temperatura da settare
+
+	?state a st:State;
+			log:includes { {:MyAirConditioner :hasTemperatureSet ?oldTemp.} a st:StateComponent. }.
+
+	?newTemp a thermo:Temperature;
+					:hasValue ?tempValue;
+					:hasUnit unit:DegreeCelsius.
+}
+=>
+{
+	#Qui devono essere presenti i seguenti concetti:
+	# - Concetto di sostituzione di stato (è una PUT quindi da vecchio a nuovo)
+	# - Il nuovo stato avrà i valori di temperatura espressi nell'antecedente (NB: Lo stato devo farmelo restituire dall'inferenza!)
+
+	_:request http:methodName "PUT";
+            http:requestURI "airconditioner/preferredTemperature";
+            http:body  ("preferredTemperature :" ?tempValue).
+
+
+  [ a st:StateTransition;
+  	st:typeOperation "replacement";
+    st:oldComponent { {:MyAirConditioner :hasTemperatureSet ?oldTemp.} a st:StateComponent. };
+    st:newComponent { {:MyAirConditioner :hasTemperatureSet ?newTemp.} a st:StateComponent. };
+    st:originalState ?state
+  ].
+
+}.

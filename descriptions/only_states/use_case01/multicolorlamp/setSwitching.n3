@@ -1,0 +1,29 @@
+@prefix : <http://example.org/smartobject#>.
+@prefix http: <http://www.w3.org/2011/http#>.
+@prefix st: <http://www.mystates.org/states#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix bonsai: <http://lpis.csd.auth.gr/ontologies/bonsai/BOnSAI.owl#>.
+
+
+{
+	?state a st:State;
+			log:includes { {:MyRGBLamp :isSwitched ?oldValue.} a st:StateComponent. }.
+
+	?newSwitching a bonsai:SwitchAction;
+			:hasValue ?newValue.
+}
+=>
+{
+	_:request http:methodName "PUT";
+            http:requestURI "rgblamp/state";
+            http:body ("state :" ?newValue).
+
+  [ a st:StateTransition;
+  	st:typeOperation "replacement";
+    st:oldComponent { {:MyRGBLamp :isSwitched ?oldValue.} a st:StateComponent. };
+    st:newComponent { {:MyRGBLamp :isSwitched ?newSwitching.} a st:StateComponent. };
+    st:originalState ?state
+  ].
+
+}.

@@ -1,0 +1,22 @@
+@prefix : <http://example.org/smartobject#>.
+@prefix st: <http://www.mystates.org/states#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix foi: <http://www.foi.org/featuresForSmartThings#>.
+@prefix sweet: <http://sweet.jpl.nasa.gov/>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+
+
+##GOAL - set a new temperature to an object that is able to have as feature of interest a thermo:Temperature
+
+{
+	?obj foi:hasFeatureOfInterest ?light.
+
+	?light a sweet:Light.
+
+	?state a st:State;
+			log:includes { {?obj :hasColorLightSet :userColor.} a st:StateComponent. }.
+}
+=>
+{
+	?obj a rdfs:Resource.
+}.

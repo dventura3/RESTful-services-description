@@ -1,0 +1,28 @@
+@prefix : <http://example.org/smartobject#>.
+@prefix thermo: <http://sweet.jpl.nasa.gov/2.2/quanTemperature.owl#>.
+@prefix st: <http://www.mystates.org/states#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix foi: <http://www.foi.org/featuresForSmartThings#>.
+@prefix ssn: <http://purl.oclc.org/NET/ssnx/ssn#>.
+@prefix bonsai: <http://lpis.csd.auth.gr/ontologies/bonsai/BOnSAI.owl#>.
+
+
+:MySensorT	a ssn:Sensor;
+						foi:hasFeatureOfInterest :temperature.
+
+:temperature 	a foi:FeatureOfInterest;
+			 				a thermo:Temperature.
+
+{
+	{:MySensorT :observes _:temp.} a st:StateComponent.
+	{:MySensorT :isSwitched :defaultSwitch.} a st:StateComponent.
+} a st:State.
+
+_:temp 	a thermo:Temperature;
+				:hasValue _:val;
+				:hasUnit unit:DegreeCelsius.
+
+:defaultSwitch a bonsai:SwitchAction;
+			:hasValue "on".

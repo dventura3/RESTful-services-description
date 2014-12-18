@@ -1,0 +1,10 @@
+@prefix : <http://example.org/smartobject#>.
+@prefix st: <http://www.mystates.org/states#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+
+
+:userColor a dbpedia:Color;
+			:hasValue "0,0,127";
+			:hasUnit dbpedia:RGB_color_model.

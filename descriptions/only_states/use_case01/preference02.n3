@@ -1,0 +1,12 @@
+@prefix : <http://example.org/smartobject#>.
+@prefix thermo: <http://sweet.jpl.nasa.gov/2.2/quanTemperature.owl#>.
+@prefix st: <http://www.mystates.org/states#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+
+
+##TEMPERATURE TO SET - input user:
+:newTemp a thermo:Temperature;
+			:hasValue "30";
+			:hasUnit unit:DegreeCelsius.
