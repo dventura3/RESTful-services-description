@@ -26,15 +26,15 @@
 	# - Il nuovo stato avrà i valori di temperatura espressi nell'antecedente (NB: Lo stato devo farmelo restituire dall'inferenza!)
 
 	_:request http:methodName "PUT";
-            http:requestURI "airconditioner/preferredTemperature";
-            http:body  ("preferredTemperature :" ?tempValue).
+						http:requestURI "airconditioner/preferredTemperature";
+						http:body  ("preferredTemperature :" ?tempValue).
 
 
-  [ a st:StateTransition;
-  	st:typeOperation "replacement";
-    st:oldComponent { {:MyAirConditioner :hasTemperatureSet ?oldTemp.} a st:StateComponent. };
-    st:newComponent { {:MyAirConditioner :hasTemperatureSet ?newTemp.} a st:StateComponent. };
-    st:originalState ?state
-  ].
+	[ a st:StateTransition;
+		st:typeOperation "replacement";
+		st:oldComponent { {:MyAirConditioner :hasTemperatureSet ?oldTemp.} a st:StateComponent. };
+		st:newComponent { {:MyAirConditioner :hasTemperatureSet ?newTemp.} a st:StateComponent. };
+		st:originalState ?state
+	].
 
 }.

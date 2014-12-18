@@ -10,18 +10,18 @@
 ##GOAL - set a new temperature to an object that is able to have as feature of interest a thermo:Temperature
 
 {
-	?obj foi:hasFeatureOfInterest ?temp.
-	
-	?temp a thermo:Temperature.
+  ?obj foi:hasFeatureOfInterest ?temp.
+  
+  ?temp a thermo:Temperature.
 
-	?state a st:State;
-				log:includes { {?obj :observes ?temperature.} a st:StateComponent. }.
+  ?state a st:State;
+        log:includes { {?obj :observes ?temperature.} a st:StateComponent. }.
 
-	?temperature a thermo:Temperature;
-				:hasValue ?val;
-				:hasUnit unit:DegreeCelsius.
+  ?temperature a thermo:Temperature;
+        :hasValue ?val;
+        :hasUnit unit:DegreeCelsius.
 }
 =>
 {
-	?obj a rdfs:Resource.
+  ?obj a rdfs:Resource.
 }.

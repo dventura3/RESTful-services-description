@@ -12,7 +12,7 @@
 			foi:hasFeatureOfInterest :temperature.
 
 :temperature a 	foi:FeatureOfInterest;
-			 			 a 	thermo:Temperature.
+						 a 	thermo:Temperature.
 
 {
 	{:MyAirConditioner :hasTemperatureSet :defaultTemp.} a st:StateComponent.
