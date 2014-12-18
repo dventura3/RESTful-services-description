@@ -6,5 +6,5 @@
 
 
 :userColor a dbpedia:Color;
-			:hasValue "0,0,127";
-			:hasUnit dbpedia:RGB_color_model.
+	   :hasValue "0,0,127";
+	   :hasUnit dbpedia:RGB_color_model.

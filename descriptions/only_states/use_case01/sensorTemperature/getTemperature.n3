@@ -8,16 +8,16 @@
 
 
 {
-	?state a st:State;
-				log:includes { {:MySensorT :observes ?temp.} a st:StateComponent. }.
+	?state  a st:State;
+		log:includes { {:MySensorT :observes ?temp.} a st:StateComponent. }.
 }
 =>
 {
 	_:request http:methodName "GET";
-    				http:requestURI "sensortemperature/getTemperature";
-						http:resp [ http:body ?tempValue ].
+    		  http:requestURI "sensortemperature/getTemperature";
+		  http:resp [ http:body ?tempValue ].
 
-	?temp a thermo:Temperature;
-			:hasValue ?tempValue;
-			:hasUnit unit:DegreeCelsius.
+	?temp   a thermo:Temperature;
+		:hasValue ?tempValue;
+		:hasUnit unit:DegreeCelsius.
 }.

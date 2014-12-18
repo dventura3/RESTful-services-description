@@ -7,12 +7,12 @@
 
 
 {
-	?state a st:State;
-			log:includes { {:MyRGBLamp :hasBrightnessSet ?oldBrigh.} a st:StateComponent. }.
+	?state  a st:State;
+		log:includes { {:MyRGBLamp :hasBrightnessSet ?oldBrigh.} a st:StateComponent. }.
 
 	?newBrigh a flux:Brightness;
-      :hasValue ?newValue;
-      :hasUnit  unit:Lumen.
+      		  :hasValue ?newValue;
+      		  :hasUnit  unit:Lumen.
 }
 =>
 {
@@ -20,11 +20,11 @@
             http:requestURI "rgblamp/brightness";
             http:body ("brightness :" ?newValue).
 
-  [ a st:StateTransition;
-  	st:typeOperation "replacement";
-    st:oldComponent { {:MyRGBLamp :hasBrightnessSet ?oldBrigh.} a st:StateComponent. };
-    st:newComponent { {:MyRGBLamp :hasBrightnessSet ?newBrigh.} a st:StateComponent. };
-    st:originalState ?state
-  ].
+  	[ a st:StateTransition;
+  	  st:typeOperation "replacement";
+    	  st:oldComponent { {:MyRGBLamp :hasBrightnessSet ?oldBrigh.} a st:StateComponent. };
+    	  st:newComponent { {:MyRGBLamp :hasBrightnessSet ?newBrigh.} a st:StateComponent. };
+    	  st:originalState ?state
+  	].
 
 }.

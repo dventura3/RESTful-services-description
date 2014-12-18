@@ -7,10 +7,10 @@
 
 
 {
-	?state a st:State;
-			log:includes { {:MyRGBLamp :isSwitched ?oldValue.} a st:StateComponent. }.
+	?state  a st:State;
+		log:includes { {:MyRGBLamp :isSwitched ?oldValue.} a st:StateComponent. }.
 
-	?newSwitching a bonsai:SwitchAction;
+	?newSwitching   a bonsai:SwitchAction;
 			:hasValue ?newValue.
 }
 =>
@@ -19,11 +19,10 @@
             http:requestURI "rgblamp/state";
             http:body ("state :" ?newValue).
 
-  [ a st:StateTransition;
-  	st:typeOperation "replacement";
-    st:oldComponent { {:MyRGBLamp :isSwitched ?oldValue.} a st:StateComponent. };
-    st:newComponent { {:MyRGBLamp :isSwitched ?newSwitching.} a st:StateComponent. };
-    st:originalState ?state
-  ].
-
+	[ a st:StateTransition;
+  	  st:typeOperation "replacement";
+    	  st:oldComponent { {:MyRGBLamp :isSwitched ?oldValue.} a st:StateComponent. };
+    	  st:newComponent { {:MyRGBLamp :isSwitched ?newSwitching.} a st:StateComponent. };
+    	  st:originalState ?state
+ 	].
 }.

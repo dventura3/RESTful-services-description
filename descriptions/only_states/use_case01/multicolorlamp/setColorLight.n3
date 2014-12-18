@@ -7,12 +7,12 @@
 
 
 {
-	?state a st:State;
-			log:includes { {:MyRGBLamp :hasColorLightSet ?oldColor.} a st:StateComponent. }.
+	?state  a st:State;
+		log:includes { {:MyRGBLamp :hasColorLightSet ?oldColor.} a st:StateComponent. }.
 
-  ?newColor a dbpedia:Color;
-      :hasValue ?newValue;
-      :hasUnit dbpedia:RGB_color_model.
+  	?newColor a dbpedia:Color;
+      		  :hasValue ?newValue;
+      		  :hasUnit dbpedia:RGB_color_model.
 }
 =>
 {
@@ -20,11 +20,10 @@
             http:requestURI "rgblamp/colorLight";
             http:body ("color :" ?newValue).
 
-  [ a st:StateTransition;
-  	st:typeOperation "replacement";
-    st:oldComponent { {:MyRGBLamp :hasColorLightSet ?oldColor.} a st:StateComponent. };
-    st:newComponent { {:MyRGBLamp :hasColorLightSet ?newColor.} a st:StateComponent. };
-    st:originalState ?state
-  ].
-
+  	[ a st:StateTransition;
+  	  st:typeOperation "replacement";
+    	  st:oldComponent { {:MyRGBLamp :hasColorLightSet ?oldColor.} a st:StateComponent. };
+    	  st:newComponent { {:MyRGBLamp :hasColorLightSet ?newColor.} a st:StateComponent. };
+    	  st:originalState ?state
+ 	].
 }.

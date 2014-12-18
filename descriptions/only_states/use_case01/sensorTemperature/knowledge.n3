@@ -9,11 +9,11 @@
 @prefix bonsai: <http://lpis.csd.auth.gr/ontologies/bonsai/BOnSAI.owl#>.
 
 
-:MySensorT	a ssn:Sensor;
-						foi:hasFeatureOfInterest :temperature.
+:MySensorT a ssn:Sensor;
+	   foi:hasFeatureOfInterest :temperature.
 
-:temperature 	a foi:FeatureOfInterest;
-			 				a thermo:Temperature.
+:temperature a foi:FeatureOfInterest;
+	     a thermo:Temperature.
 
 {
 	{:MySensorT :observes _:temp.} a st:StateComponent.
@@ -21,8 +21,8 @@
 } a st:State.
 
 _:temp 	a thermo:Temperature;
-				:hasValue _:val;
-				:hasUnit unit:DegreeCelsius.
+	:hasValue _:val;
+	:hasUnit unit:DegreeCelsius.
 
-:defaultSwitch a bonsai:SwitchAction;
-			:hasValue "on".
+:defaultSwitch  a bonsai:SwitchAction;
+		:hasValue "on".

@@ -8,5 +8,5 @@
 
 ##TEMPERATURE TO SET - input user:
 :newTemp a thermo:Temperature;
-			:hasValue "30";
-			:hasUnit unit:DegreeCelsius.
+	 :hasValue "30";
+	 :hasUnit unit:DegreeCelsius.

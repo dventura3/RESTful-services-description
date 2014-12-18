@@ -9,7 +9,7 @@
 
 
 :MyRGBLamp	a dbpedia:Light-emitting_diode;
-						foi:hasFeatureOfInterest foi:light.
+		foi:hasFeatureOfInterest foi:light.
 
 foi:light a sweet:Light.
 
@@ -22,7 +22,7 @@ foi:light a sweet:Light.
 
 :defaultBrigh a flux:Brightness;
 			:hasValue "100";
-			:hasUnit	unit:Lumen.
+			:hasUnit unit:Lumen.
 
 :defaultColor a dbpedia:Color;
 			:hasValue "0,127,0";
