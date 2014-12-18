@@ -2,20 +2,20 @@
 @prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
 
 :kitchen_1 a dogont:Kitchen;
-					:hasLabel "kitchen";
-					:roomID "001".
+	:hasLabel "kitchen";
+	:roomID "001".
 
 :kitchen_2 a dogont:Kitchen;
-					:hasLabel "small kitchen";
-					:roomID "002".
+	:hasLabel "small kitchen";
+	:roomID "002".
 
 :bathroom_1 a dogont:Bathroom;
-					:hasLabel "bathroom";
-					:roomID "003".
+	:hasLabel "bathroom";
+	:roomID "003".
 
 :bedroom_1 a dogont:Bedroom;
-					:hasLabel "bedroom";
-					:roomID "004".
+	:hasLabel "bedroom";
+	:roomID "004".
 
 
 ######### Associations room-object #########

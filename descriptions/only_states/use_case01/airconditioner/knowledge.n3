@@ -8,11 +8,11 @@
 @prefix bonsai: <http://lpis.csd.auth.gr/ontologies/bonsai/BOnSAI.owl#>.
 
 
-:MyAirConditioner	a dbpedia:Air_Conditioner;
-			foi:hasFeatureOfInterest :temperature.
+:MyAirConditioner a dbpedia:Air_Conditioner;
+		  foi:hasFeatureOfInterest :temperature.
 
 :temperature a 	foi:FeatureOfInterest;
-						 a 	thermo:Temperature.
+	     a 	thermo:Temperature.
 
 {
 	{:MyAirConditioner :hasTemperatureSet :defaultTemp.} a st:StateComponent.
@@ -20,9 +20,9 @@
 } a st:State.
 
 
-:defaultTemp a thermo:Temperature;
-				:hasValue "15";
-				:hasUnit unit:DegreeCelsius.
+:defaultTemp 	a thermo:Temperature;
+		:hasValue "15";
+		:hasUnit unit:DegreeCelsius.
 
-:defaultSwitch a bonsai:SwitchAction;
-			:hasValue "on".
+:defaultSwitch  a bonsai:SwitchAction;
+		:hasValue "on".

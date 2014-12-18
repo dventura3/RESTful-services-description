@@ -14,7 +14,7 @@
   ?light a sweet:Light.
 
   ?state a st:State;
-      log:includes { {?obj :hasColorLightSet :userColor.} a st:StateComponent. }.
+         log:includes { {?obj :hasColorLightSet :userColor.} a st:StateComponent. }.
 }
 =>
 {

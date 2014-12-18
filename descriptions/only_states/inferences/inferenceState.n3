@@ -14,30 +14,30 @@ st:StateComponent a rdfs:Class.
 
 
 
-st:oldComponent a rdf:Property;
-							 rdfs:domain st:StateTransition;
-							 rdfs:range log:Formula.
+st:oldComponent  a rdf:Property;
+		 rdfs:domain st:StateTransition;
+		 rdfs:range log:Formula.
 
 st:newComponent a rdf:Property;
-							 rdfs:domain st:StateTransition;
-							 rdfs:range log:Formula.
+		rdfs:domain st:StateTransition;
+		 rdfs:range log:Formula.
 
 st:originalState a rdf:Property;
-							 rdfs:domain st:StateTransition;
-							 rdfs:range st:State.
+		 rdfs:domain st:StateTransition;
+		 rdfs:range st:State.
 
 st:typeOperation a rdf:Property;
-							 rdfs:domain st:StateTransition;
-							 rdfs:range rdfs:Literal.
+		 rdfs:domain st:StateTransition;
+		 rdfs:range rdfs:Literal.
 
 
 
 #add
 {
 	?transition  a st:StateTransition;
-							 st:typeOperation "add";
-							 st:newComponent ?newComponent;
-							 st:originalState ?oldState.
+		st:typeOperation "add";
+		st:newComponent ?newComponent;
+		st:originalState ?oldState.
 
 	(?oldState ?newComponent) log:conjunction ?newState.
 }
@@ -52,9 +52,9 @@ st:typeOperation a rdf:Property;
 #remove
 {
 	?transition  a st:StateTransition;
-							 st:typeOperation "remove";
-							 st:oldComponent ?oldComponent;
-							 st:originalState ?oldState.
+		st:typeOperation "remove";
+		st:oldComponent ?oldComponent;
+		st:originalState ?oldState.
 
 	(?oldState ?oldComponent) e:graphDifference ?newState.
 }
@@ -68,10 +68,10 @@ st:typeOperation a rdf:Property;
 #replace (unione di add e remove)
 {
 	?transition a st:StateTransition;
-							st:typeOperation "replacement";
-							st:oldComponent ?oldComponent;
-							st:newComponent ?newComponent;
-							st:originalState ?oldState.
+		st:typeOperation "replacement";
+		st:oldComponent ?oldComponent;
+		st:newComponent ?newComponent;
+		st:originalState ?oldState.
 
 	#e.g. ({:a :b :c. :d :e :f} {:d :e :f}) e:graphDifference {:a :b :c}.";
 	(?oldState ?oldComponent) e:graphDifference ?stateWithoutOldComponent.
