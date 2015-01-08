@@ -1,0 +1,30 @@
+@prefix : <http://example.org/smartobject#>.
+@prefix http: <http://www.w3.org/2011/http#>.
+@prefix st: <http://www.mystates.org/states#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+
+
+{
+	?state a st:State;
+			log:includes { {:MyRGBLamp :hasColorLightSet ?oldColor.} a st:StateComponent. }.
+
+  ?newColor a dbpedia:Color;
+      :hasValue ?newValue;
+      :hasUnit dbpedia:RGB_color_model.
+}
+=>
+{
+	_:request http:methodName "PUT";
+            http:requestURI "rgblamp/colorLight";
+            http:body ("color :" ?newValue).
+
+  [ a st:StateTransition;
+  	st:typeOperation "replacement";
+    st:oldComponent { {:MyRGBLamp :hasColorLightSet ?oldColor.} a st:StateComponent. };
+    st:newComponent { {:MyRGBLamp :hasColorLightSet ?newColor.} a st:StateComponent. };
+    st:originalState ?state
+  ].
+
+}.

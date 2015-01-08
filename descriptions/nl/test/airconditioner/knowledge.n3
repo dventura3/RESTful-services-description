@@ -1,0 +1,28 @@
+@prefix : <http://example.org/smartobject#>.
+@prefix thermo: <http://sweet.jpl.nasa.gov/2.2/quanTemperature.owl#>.
+@prefix st: <http://www.mystates.org/states#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix foi: <http://www.foi.org/featuresForSmartThings#>.
+@prefix bonsai: <http://lpis.csd.auth.gr/ontologies/bonsai/BOnSAI.owl#>.
+
+
+:MyAirConditioner	a dbpedia:Air_Conditioner;
+			foi:hasFeatureOfInterest :temperature.
+
+:temperature a 	foi:FeatureOfInterest;
+			 			 a 	thermo:Temperature.
+
+{
+	{:MyAirConditioner :hasTemperatureSet :defaultTemp.} a st:StateComponent.
+	{:MyAirConditioner :isSwitched :defaultSwitch.} a st:StateComponent.
+} a st:State.
+
+
+:defaultTemp a thermo:Temperature;
+				:hasValue "15";
+				:hasUnit unit:DegreeCelsius.
+
+:defaultSwitch a bonsai:SwitchAction;
+			:hasValue "on".

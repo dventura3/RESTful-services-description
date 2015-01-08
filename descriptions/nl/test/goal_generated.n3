@@ -1,0 +1,15 @@
+@prefix : <http://example.org/smartobject#>.
+@prefix st: <http://www.mystates.org/states#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix foi: <http://www.foi.org/featuresForSmartThings#>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix thermo: <http://sweet.jpl.nasa.gov/2.2/quanTemperature.owl#>.
+
+{
+?room a dogont:Kitchen;
+:hasSmartObject ?obj.
+?state a st:State; 
+ log:includes { {?obj :observes  ?phisicalMeasure.} a st:StateComponent. }.
+?phisicalMeasure a thermo:Temperature; :hasUnit unit:DegreeCelsius; :hasValue ?val. } => { ?obj a rdfs:Resource. }.

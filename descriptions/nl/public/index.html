@@ -1,0 +1,76 @@
+<html>
+  <head>
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/semanticEngine.js"></script>
+    <script>
+      $(function() {
+        
+        $("#post").click(function() {
+          post = $('#txt_post').val();
+          $.ajax('/facebook/post?text='+post);
+        });
+        
+        $("#getMSGs").click(function() {
+          $.ajax('/facebook/getMessages');
+        });
+        
+      });
+    </script>
+  </head>
+
+  <body>
+
+<!--
+    <br><br><br>
+    <a href="/auth/facebook">Facebook Login</a>
+
+    <br><br><br>
+    <input type="text" id="txt_post" />
+    <br>
+    <button id="post">Post Something on Facebook</button>
+
+    <br><br><br>
+    <button id="getMSGs">Get All Private Messages</button>
+-->
+
+<!--
+    <form NAME="myform" ACTION="" METHOD="GET">
+    Enter something in the box: <BR>
+    <INPUT TYPE="text" NAME="inputbox" VALUE=""><P>
+    <INPUT TYPE="button" NAME="button1" Value="Read" onClick="readText(this.form)">
+    <INPUT TYPE="button" NAME="button2" Value="Write" onClick="writeText(this.form)">
+    </form>
+
+-->
+
+    <h1>IF</h1>
+    <br>
+    WHAT? 
+    <input type="text" id="IF_what" />
+    <br>
+    WHOSE? 
+    <input type="text" id="IF_whose" />
+    <br>
+    WHERE? 
+    <input type="text" id="IF_where" />
+    <br>
+    OPERATION? 
+    <input type="text" id="IF_operation" />
+    <br>
+    VALUE? 
+    <input type="text" id="IF_value" />
+    <br>
+    UNIT? 
+    <input type="text" id="IF_unit" />
+    <br>
+    WHEN? 
+    <input type="text" id="IF_when" />
+    <br><br><br>
+    <button id="trigger" onClick="UI_trigger_function()">convert trigger into semantic trigger</button>
+
+    <button id="generateGoal" onClick="generate_goal()">generate goal</button>
+
+
+  </body>
+</html>

@@ -1,0 +1,30 @@
+@prefix : <http://example.org/smartobject#>.
+@prefix http: <http://www.w3.org/2011/http#>.
+@prefix st: <http://www.mystates.org/states#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix flux: <http://sweet.jpl.nasa.gov/2.2/propEnergyFlux.owl#>.
+
+
+{
+	?state a st:State;
+			log:includes { {:MyRGBLamp :hasBrightnessSet ?oldBrigh.} a st:StateComponent. }.
+
+	?newBrigh a flux:Brightness;
+      :hasValue ?newValue;
+      :hasUnit  unit:Lumen.
+}
+=>
+{
+	_:request http:methodName "PUT";
+            http:requestURI "rgblamp/brightness";
+            http:body ("brightness :" ?newValue).
+
+  [ a st:StateTransition;
+  	st:typeOperation "replacement";
+    st:oldComponent { {:MyRGBLamp :hasBrightnessSet ?oldBrigh.} a st:StateComponent. };
+    st:newComponent { {:MyRGBLamp :hasBrightnessSet ?newBrigh.} a st:StateComponent. };
+    st:originalState ?state
+  ].
+
+}.

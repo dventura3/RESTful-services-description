@@ -1,0 +1,32 @@
+@prefix : <http://example.org/smartobject#>.
+@prefix st: <http://www.mystates.org/states#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+@prefix foi: <http://www.foi.org/featuresForSmartThings#>.
+@prefix sweet: <http://sweet.jpl.nasa.gov/>.
+@prefix flux: <http://sweet.jpl.nasa.gov/2.2/propEnergyFlux.owl#>.
+@prefix bonsai: <http://lpis.csd.auth.gr/ontologies/bonsai/BOnSAI.owl#>.
+
+
+:MyRGBLamp	a dbpedia:Light-emitting_diode;
+						foi:hasFeatureOfInterest foi:light.
+
+foi:light a sweet:Light.
+
+{
+	{:MyRGBLamp :hasBrightnessSet :defaultBrigh.} a st:StateComponent.
+	{:MyRGBLamp :hasColorLightSet :defaultColor.} a st:StateComponent.
+	{:MyRGBLamp :isSwitched :defaultSwitch.} a st:StateComponent.
+} a st:State.
+
+
+:defaultBrigh a flux:Brightness;
+			:hasValue "100";
+			:hasUnit	unit:Lumen.
+
+:defaultColor a dbpedia:Color;
+			:hasValue "0,127,0";
+			:hasUnit dbpedia:RGB_color_model.  		#da nome a rgb? Converter
+
+:defaultSwitch a bonsai:SwitchAction;
+			:hasValue "on".
